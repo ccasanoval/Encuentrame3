@@ -1,0 +1,4 @@
+<resources>
+
+    <style name="Theme.Encuentrame3" parent="Theme.MaterialComponents.Light" />
+</resources>

@@ -1,0 +1,28 @@
+//https://medium.com/stepstone-tech/modularizing-your-flavored-android-project-5db75c59fb0d
+ext.flavorConfig = {
+    flavorDimensions 'Servicios'
+    productFlavors {
+        gms {
+            dimension 'Servicios'
+            //applicationIdSuffix '.gms'//TODO: cuando subas a Google Play comenta esta linea
+            versionNameSuffix "-gms"
+        }
+        hms {
+            dimension 'Servicios'
+            //applicationIdSuffix '.hms'
+            versionNameSuffix "-hms"
+        }
+    }
+
+    productFlavors.all { flavor ->
+        if(flavor.hasProperty('applicationIdSuffix') && !isApplicationProject()) {
+            flavor.applicationIdSuffix = null
+        }
+    }
+}
+
+def isApplicationProject() {
+    return project.android.class.simpleName.startsWith('BaseAppModuleExtension')
+    // in AGP 3.1.x with library modules instead of feature modules:
+    // return project.android instanceof com.android.build.gradle.AppExtension
+}

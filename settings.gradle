@@ -1,0 +1,6 @@
+include ':feature_login'
+include ':feature_alert'
+include ':feature_route'
+include ':feature_poi'
+include ':app'
+rootProject.name = "Encuentrame3"

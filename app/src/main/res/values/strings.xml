@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE resources [
+    <!ENTITY voice_new_point "New point">
+    <!ENTITY voice_new_route "New route">
+    <!ENTITY voice_new_route2 "Start route">
+    <!ENTITY voice_new_alert "New alert">
+    <!ENTITY voice_start "Start">
+    <!ENTITY voice_save "Save">
+    <!ENTITY voice_cancel "Cancel">
+    <!ENTITY voice_stop_route "Stop route">
+    <!ENTITY voice_map "Map">
+    <!ENTITY voice_stop_listening "Stop listening">
+    ]>
+<!-- not supported anymore DOCTYPE resources [
+	<!ENTITY % ents SYSTEM "./res/raw/voice_commands.ent">
+	%ents;
+	] -->
+<resources>
+    <!-- App -->
+    <string name="app_name">Find me!</string>
+    <string name="app_lice" translatable="false">2016-2021  Cesar Casanova \n(Creative Commons NC-SA)</string>
+    <string name="app_vers" translatable="false">2021  Ver. %s</string>
+    <string name="app_lice_tit">Licence</string>
+    <string name="app_vers_tit">Version:</string>
+    <string name="app_desc">\nApp for the management of personal points of interest. It counts with geo-position alerts and geo-tracking. As the data is saved to the cloud, you can manage your geo-data easily.\n\n</string>
+
+    <string name="email" translatable="false">eMail</string>
+    <string name="lat_lon" translatable="false">Lat/Lon</string>
+
+    <string name="activo">Active</string>
+    <string name="aviso">Alert message</string>
+    <string name="clave">Password</string>
+    <string name="clave_confirmar">Repeat password</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="descripcion">Description</string>
+    <string name="direccion">Address…</string>
+    <string name="estadisticas">Statistics</string>
+    <string name="estadisticas_format" formatted="false">Length:\t\t\t\t\t\t%1$s\nTime:\t\t\t\t\t\t\t%2$s\nAvg Speed:\t\t\t\t%3$s\nMin Speed:\t\t\t\t%4$s\nMax Speed:\t\t\t%5$s\nMin Altitude:\t\t%6$s\nMax Altitude:\t\t%7$s\n</string>
+    <string name="en_zona_aviso">Inside Alert Zone</string>
+    <string name="enter_lbl">Input login</string>
+    <string name="nombre">Name</string>
+    <string name="radio">Radius</string>
+    <string name="radio_m" translatable="false">%d m</string>
+    <string name="lista_vacia">Empty list…</string>
+    <string name="voz_onoff">Voice</string>
+    <string name="activos">ACTIVE</string>
+    <string name="inactivos">INACTIVE</string>
+    <string name="on_timeout">Task timeout, check Internet connection</string>
+    <string name="user_image">User image</string>
+
+    <!-- Actions -->
+    <string name="guardar">Save</string>
+    <string name="eliminar">Remove</string>
+    <string name="cancelar">Cancel</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="salir">Exit anyway</string>
+    <string name="ver_mapa">Show map</string>
+    <string name="buscar">Search</string>
+    <string name="stop_geotracking">Stop tracking</string>
+    <string name="stop_geofencing">Stop alerts</string>
+    <string name="start_geofencing">Start alerts</string>
+    <string name="actualizar_posicion">Refresh location</string>
+    <string name="geofencing_service">Geofencing service</string>
+    <string name="geofencing_service_stoping">Stoping geofencing service…</string>
+    <string name="geotracking_service">Tracking service</string>
+    <string name="geotracking_service_stoping">Stoping tracking service…</string>
+
+    <!-- Items -->
+    <string name="lugares">Points</string>
+    <string name="rutas">Routes</string>
+    <string name="avisos">Alerts</string>
+
+    <!-- Editar -->
+    <string name="editar">Edit</string>
+    <string name="editar_aviso">Edit Alert</string>
+    <string name="editar_lugar">Edit Point</string>
+    <string name="editar_ruta">Edit Route</string>
+
+    <!-- Fecha -->
+    <string name="fecha_desde">From</string>
+    <string name="fecha_hasta">to</string>
+    <string name="fin">End: </string>
+    <string name="ini">Ini: </string>
+
+    <!-- Nuevo -->
+    <string name="nuevo">New</string>
+    <string name="nueva_ruta">New Route</string>
+    <string name="nuevo_aviso">New Alert</string>
+    <string name="nuevo_lugar">New Point</string>
+
+    <!-- Title -->
+    <string name="title_activity_act_aviso">Alert</string>
+    <string name="title_activity_act_buscar">Search</string>
+    <string name="title_activity_act_config">Settings</string>
+    <string name="title_activity_act_lugar">Point</string>
+    <string name="title_activity_act_main">Find me!</string>
+    <string name="title_activity_act_maps">Map</string>
+    <string name="title_activity_act_ruta">Route</string>
+    <string name="title_act_imagen">Picture</string>
+
+    <!-- Imagen -->
+    <string name="imagen">Picture</string>
+    <string name="tomar_imagen">Take a picture</string>
+
+    <!-- Widget -->
+    <string name="widget_lugar">Points</string>
+    <string name="widget_ruta">Routes</string>
+
+    <!-- Recover -->
+    <string name="recover_ko">There was a fault while \n resetting the user\'s account</string>
+    <string name="recover_lbl">Reset your password</string>
+    <string name="recover_ok">An email to recover your \n password was sent to you</string>
+
+    <!-- Register -->
+    <string name="register_bad_pass">Notice that both passwords must be equal!</string>
+    <string name="register_lbl">Create a new account</string>
+    <string name="register_ok">You have just registered! \n Now check your email</string>
+    <string name="register_ko">There was a fault while \n registering the user \n Try again, please.</string>
+
+    <!-- Error -->
+    <string name="err_get_ruta_pts">Failed to retrieve route data</string>
+    <string name="no_camera_hardware">There is no camera hardware in this device</string>
+    <string name="error_img_path">Failed trying to get the image path</string>
+    <string name="error_eliminar">Fault at deleting: %s</string>
+    <string name="error_guardar">There was a problem when saving the data: %s</string>
+
+    <!-- Ok -->
+    <string name="ok">OK</string>
+    <string name="ok_eliminar_lugar">The Point was deleted</string>
+    <string name="ok_eliminar_aviso">The Alert was deleted</string>
+    <string name="ok_eliminar_ruta">The Route was deleted</string>
+    <string name="ok_guardar_aviso">The Alert was saved</string>
+    <string name="ok_guardar_lugar">The Point was saved</string>
+    <string name="ok_guardar_ruta">The Route was saved</string>
+
+    <!-- Ask -->
+    <string name="seguro_eliminar">Are you sure you want to remove?</string>
+    <string name="seguro_eliminar_pto">Are you sure you want to remove the point?</string>
+    <string name="seguro_salir">You made changes. Do you want to save?</string>
+    <string name="ask_to_ignore_energy_saving_again">The tracking will stop in doze mode if battery optimizations are on. Are you sure?</string>
+    <string name="ask_to_enable_gps">The geofencing service needs the GPS on</string>
+    <string name="permission_required">The permission is required to use the app</string>
+    <string name="permission_required_title">Grant permission?</string>
+
+    <!-- Sin -->
+    <string name="sin_lugar">A location must be stablished…</string>
+    <string name="sin_nombre">A name must be stablished…</string>
+    <string name="sin_posicion">No location</string>
+    <string name="sin_filtro">Search parameters removed</string>
+
+    <!-- Login -->
+    <string name="login">Log in</string>
+    <string name="login_error">Wrong user or password</string>
+    <string name="login_ok">Welcome %s</string>
+
+    <!-- Estado -->
+    <string name="in_vehicle">In a vehicle</string>
+    <string name="on_bicycle">On a bicycle</string>
+    <string name="on_foot">On foot</string>
+    <string name="running">Running</string>
+    <string name="still">Still</string>
+    <string name="tilting">Tilting</string>
+    <string name="unknown">Unknown activity</string>
+    <string name="walking">Walking</string>
+    <string name="unidentifiable_activity">Unidentifiable activity: %1$d</string>
+
+    <!-- Info -->
+    <string name="info_time">Time: </string>
+    <string name="info_prec">\nAccuracy: %.2f m\n</string>
+    <string name="info_dist">\nDistance: %.0f m</string>
+    <string name="info_dist2">\nDistance: %.1f Km</string>
+    <string name="info_alt">\nAltitude: %.0f m</string>
+    <string name="info_nor">\nBearing: %.0f º</string>
+    <string name="info_speed">\nSpeed: %.2f m/s</string>
+    <string name="info_speed2">\nSpeed: %.0f Km/h</string>
+    <string name="info_activity" translatable="false">\nActiv.: %s</string>
+
+    <!-- Drawer navigation -->
+    <string name="nav_about">About this App…</string>
+    <string name="nav_logout">Logout</string>
+    <string name="nav_exit">Exit</string>
+    <string name="nav_config">Settings</string>
+    <string name="nav_voice">Voice commands</string>
+    <!-- Preferencias -->
+    <string name="pref_auto_arranque">Start alert service at boot up</string>
+    <string name="pref_save_login">Save login and password</string>
+    <string name="pref_save_all">Save imprecise points also</string>
+    <string name="pref_tracking_seconds">Tracking period (seconds)</string>
+    <string name="pref_speech_on">Let the App talk</string>
+    <string name="pref_voice_on">Accept voice commands from the start</string>
+
+    <!-- Commands -->
+    <string name="voice_generated">Voice Generated</string>
+    <string name="voice_new_point">&voice_new_point;</string>
+    <string name="voice_new_route">&voice_new_route;</string>
+    <string name="voice_new_route2">&voice_new_route2;</string>
+    <string name="voice_new_alert">&voice_new_alert;</string>
+    <string name="voice_start">&voice_start;</string>
+    <string name="voice_save">&voice_save;</string>
+    <string name="voice_cancel">&voice_cancel;</string>
+    <string name="voice_stop_route">&voice_stop_route;</string>
+    <string name="voice_map">&voice_map;</string>
+    <string name="voice_stop_listening">&voice_stop_listening;</string>
+    <string name="voice_comands_all">
+		&voice_new_point;,
+        &voice_new_route;,
+        &voice_new_route2;,
+        &voice_new_alert;,
+        &voice_start;,
+        &voice_save;,
+        &voice_cancel;,
+        &voice_stop_route;,
+        &voice_map;,
+        &voice_stop_listening;.
+	</string>
+</resources>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE resources [
+	<!ENTITY voice_new_point "Nuevo lugar">
+	<!ENTITY voice_new_route "Nueva ruta">
+	<!ENTITY voice_new_route2 "Empezar ruta">
+	<!ENTITY voice_new_alert "Nuevo aviso">
+	<!ENTITY voice_start "Empezar">
+	<!ENTITY voice_save "Guardar">
+	<!ENTITY voice_cancel "Cancelar">
+	<!ENTITY voice_stop_route "Parar ruta">
+	<!ENTITY voice_map "Mapa">
+	<!ENTITY voice_stop_listening "Para de escuchar">
+	]>
+<!-- not supported anymore DOCTYPE resources [
+	<!ENTITY % ents SYSTEM "./res/raw/voice_commands.ent">
+	%ents;
+	] -->
+<resources>
+	<!-- App -->
+	<string name="app_name">Encuentrame!</string>
+	<string name="app_desc">\nAplicación para la gestión de lugares de interés, con avisos por geo-posicionamiento y registro de rutas. Podrás administrar  tus geo-datos fácilmente, pues serán almacenados en la nube.\n\n</string>
+	<string name="app_lice_tit">Licencia:</string>
+	<string name="app_vers_tit">Versión:</string>
+
+
+
+
+
+
+	<string name="activo">Activo</string>
+	<string name="aviso">Mensaje de aviso</string>
+	<string name="clave">Clave</string>
+	<string name="clave_confirmar">Confirmar Clave</string>
+	<string name="privacy_policy">Política de Privacidad</string>
+	<string name="descripcion">Descripción</string>
+	<string name="direccion">Dirección…</string>
+	<string name="estadisticas">Estadísticas</string>
+	<string name="estadisticas_format" formatted="false">Longitud:\t\t\t\t\t\t%1$s\nTiempo:\t\t\t\t\t\t\t%2$s\nVelocidad.Med:\t\t%3$s\nVelocidad Min:\t\t%4$s\nVelocidad Max:\t\t%5$s\nAltitud Min:\t\t\t\t%6$s\nAltitud Max:\t\t\t\t%7$s\n</string>
+	<string name="en_zona_aviso">En zona de aviso</string>
+	<string name="enter_lbl">Introduce tu usuario</string>
+	<string name="nombre">Nombre</string>
+	<string name="radio">Radio</string>
+
+	<string name="lista_vacia">Lista vacía…</string>
+	<string name="voz_onoff">Voz</string>
+	<string name="activos">ACTIVOS</string>
+	<string name="inactivos">INACTIVOS</string>
+	<string name="on_timeout">Latencia excesiva, compruebe conexión a Internet</string>
+	<string name="user_image">Imagen de usuario</string>
+
+	<!-- Actions -->
+	<string name="guardar">Guardar</string>
+	<string name="eliminar">Eliminar</string>
+	<string name="cancelar">Cancelar</string>
+	<string name="start">Iniciar</string>
+	<string name="stop">Detener</string>
+	<string name="salir">Salir</string>
+	<string name="ver_mapa">Ver mapa</string>
+	<string name="buscar">Buscar</string>
+	<string name="stop_geotracking">Detener tracking</string>
+	<string name="stop_geofencing">Detener avisos</string>
+	<string name="start_geofencing">Activar avisos</string>
+	<string name="actualizar_posicion">Actualizar posición</string>
+	<string name="geofencing_service">Servicio de geofencing</string>
+	<string name="geofencing_service_stoping">Deteniendo servicio de geofencing…</string>
+    <string name="geotracking_service">Servicio de tracking</string>
+	<string name="geotracking_service_stoping">Deteniendo servicio de geotracking…</string>
+
+	<!-- Items -->
+	<string name="lugares">Lugares</string>
+	<string name="rutas">Rutas</string>
+	<string name="avisos">Avisos</string>
+
+	<!-- Editar -->
+	<string name="editar">Editar</string>
+	<string name="editar_lugar">Editar Lugar</string>
+	<string name="editar_aviso">Editar Aviso</string>
+	<string name="editar_ruta">Editar Ruta</string>
+
+	<!-- Fecha -->
+	<string name="fecha_desde">Del</string>
+	<string name="fecha_hasta">al</string>
+	<string name="fin">Fin: </string>
+	<string name="ini">Ini: </string>
+
+	<!-- Nuevo -->
+	<string name="nuevo">Nuevo</string>
+	<string name="nuevo_lugar">Nuevo Lugar</string>
+	<string name="nuevo_aviso">Nuevo Aviso</string>
+	<string name="nueva_ruta">Nueva Ruta</string>
+
+	<!-- Title -->
+	<string name="title_activity_act_main">Encuentrame!</string>
+	<string name="title_activity_act_maps">Mapa</string>
+	<string name="title_activity_act_config">Configuración</string>
+	<string name="title_activity_act_ruta">Ruta</string>
+	<string name="title_activity_act_aviso">Aviso</string>
+	<string name="title_activity_act_lugar">Lugar</string>
+	<string name="title_activity_act_buscar">Buscar</string>
+	<string name="title_act_imagen">Imagen</string>
+
+	<!-- Imagen -->
+	<string name="imagen">Imagen</string>
+	<string name="tomar_imagen">Tomar imagen</string>
+	<string name="error_img_path">Sucedió un error al recuperar la imagen de la cámara</string>
+
+	<!-- Widget -->
+	<string name="widget_lugar">Lugares</string>
+	<string name="widget_ruta">Rutas</string>
+
+	<!-- Recover -->
+	<string name="recover_ko">Ocurrió un error al recuperar \n la cuenta de usuario</string>
+	<string name="recover_lbl">Recupera tu clave</string>
+	<string name="recover_ok">Te hemos enviado un correo \n para que recurperes la cuenta</string>
+
+	<!-- Register -->
+	<string name="register_lbl">Crea una cuenta</string>
+	<string name="register_ok">¡Te has registrado con éxito! \n Ahora comprueba tu correo</string>
+	<string name="register_bad_pass">¡Atención, ambas claves deben ser iguales!</string>
+	<string name="register_ko">Ocurrió un error al \n registrar el usuario \n Inténtelo de nuevo, por favor.</string>
+
+	<!-- Error -->
+	<string name="err_get_ruta_pts">Error al obtener los puntos de la ruta</string>
+	<string name="no_camera_hardware">Este dispositivo no tiene cámara</string>
+	<string name="error_eliminar">Error al eliminar: %s</string>
+	<string name="error_guardar">Hubo un problema al guardar los datos del registro: %s</string>
+
+	<!-- Ok -->
+	<string name="ok">Aceptar</string>
+	<string name="ok_eliminar_aviso">Se eliminó el lugar</string>
+	<string name="ok_eliminar_lugar">Se eliminó el aviso</string>
+	<string name="ok_eliminar_ruta">Se eliminó la ruta</string>
+	<string name="ok_guardar_lugar">Se guardaron los datos del lugar</string>
+	<string name="ok_guardar_aviso">Se guardaron los datos del aviso</string>
+	<string name="ok_guardar_ruta">Se guardaron los datos de la ruta</string>
+
+	<!-- Ask -->
+	<string name="seguro_salir">Ha hecho cambios. ¿Quiere guardarlos?</string>
+	<string name="seguro_eliminar">¿Seguro que desea eliminar?</string>
+	<string name="seguro_eliminar_pto">¿Seguro que desea eliminar el punto?</string>
+	<string name="ask_to_ignore_energy_saving_again">Al apagarse la pantalla, el tracking se detendrá si no desactiva las optimizaciones de batería. Está seguro?</string>
+	<string name="ask_to_enable_gps">El servicio de geofencing necesita la localización por GPS</string>
+	<string name="permission_required">Se necesita el permiso para poder usar la app</string>
+	<string name="permission_required_title">¿Conceder permiso?</string>
+
+	<!-- Sin -->
+	<string name="sin_filtro">Se eliminaron los parámetros de búsqueda</string>
+	<string name="sin_posicion">Sin posición</string>
+	<string name="sin_nombre">Debe establecer un nombre…</string>
+	<string name="sin_lugar">Debe establecer una posición…</string>
+
+	<!-- Login -->
+	<string name="login">Iniciar sesión</string>
+	<string name="login_error">Usuario o contraseña incorrectas</string>
+	<string name="login_ok">Bienvenido %s</string>
+
+	<!-- Estado -->
+	<string name="in_vehicle">En un vehículo</string>
+	<string name="on_bicycle">En bicicleta</string>
+	<string name="on_foot">De pie</string>
+	<string name="running">Corriendo</string>
+	<string name="still">Parado</string>
+	<string name="tilting">Inclinado</string>
+	<string name="unknown">Actividad desconocida</string>
+	<string name="walking">Caminando</string>
+	<string name="unidentifiable_activity">Actividad no identificada: %1$d</string>
+
+	<!-- Info -->
+	<string name="info_time">Fecha: </string>
+	<string name="info_prec">\nPrecisión: %.2f m\n</string>
+	<string name="info_dist">\nDistancia: %.0f m</string>
+	<string name="info_dist2">\nDistancia: %.1f km</string>
+	<string name="info_alt">\nAltitud: %.0f m</string>
+	<string name="info_nor">\nNorte: %.0f º</string>
+	<string name="info_speed">\nVelocidad: %.2f m/s</string>
+	<string name="info_speed2">\nVelocidad: %.0f km/h</string>
+
+
+
+	<!-- Drawer navigation -->
+	<string name="nav_about">Sobre esta app…</string>
+	<string name="nav_logout">Cerrar la sesión</string>
+	<string name="nav_exit">Salir</string>
+	<string name="nav_config">Configuración</string>
+	<string name="nav_voice">Comandos de voz</string>
+	<!-- Preferencias -->
+	<string name="pref_save_login">Guardar usuario y contraseña</string>
+	<string name="pref_auto_arranque">Arracar Avisos al Inicio</string>
+    <string name="pref_save_all">Incluir puntos imprecisos</string>
+    <string name="pref_tracking_seconds">Periodo rastreo (segundos)</string>
+	<string name="pref_speech_on">Permir que la App hable</string>
+	<string name="pref_voice_on">Aceptar comandos al iniciar</string>
+
+	<!-- Commands -->
+	<string name="voice_generated">Generado x Voz</string>
+	<string name="voice_new_point">&voice_new_point;</string>
+	<string name="voice_new_route">&voice_new_route;</string>
+	<string name="voice_new_route2">&voice_new_route2;</string>
+	<string name="voice_new_alert">&voice_new_alert;</string>
+	<string name="voice_start">&voice_start;</string>
+	<string name="voice_save">&voice_save;</string>
+	<string name="voice_cancel">&voice_cancel;</string>
+	<string name="voice_stop_route">&voice_stop_route;</string>
+	<string name="voice_map">&voice_map;</string>
+	<string name="voice_stop_listening">&voice_stop_listening;</string>
+	<string name="voice_comands_all">
+		&voice_new_point;,
+		&voice_new_route;,
+		&voice_new_route2;,
+		&voice_new_alert;,
+		&voice_start;,
+		&voice_save;,
+		&voice_cancel;,
+		&voice_stop_route;,
+		&voice_map;,
+		&voice_stop_listening;.
+	</string>
+
+</resources>
