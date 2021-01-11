@@ -17,7 +17,8 @@ class App : Application() {
             modules(arrayListOf(
                 com.cesoft.encuentrame3.di.AppModule,
                 com.cesoft.encuentrame3.di.VMModule,
-                com.cesoft.feature_login.di.VMModule))
+                com.cesoft.feature_login.di.VMModule
+            ))
         }
     }
 }

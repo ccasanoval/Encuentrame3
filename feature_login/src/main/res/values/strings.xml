@@ -1,11 +1,22 @@
 <resources>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="enter_lbl">Input login</string>
+    <string name="email" translatable="false">eMail</string>
+    <string name="clave">Password</string>
+    <string name="clave_confirmar">Repeat password</string>
+    <string name="privacy_policy">Privacy Policy</string>
+
+    <string name="login">Log in</string>
+    <string name="login_error">Wrong user or password</string>
+    <string name="login_ok">Welcome %s</string>
+
+    <string name="recover_ko">There was a fault while \n resetting the user\'s account</string>
+    <string name="recover_lbl">Reset your password</string>
+    <string name="recover_ok">An email to recover your \n password was sent to you</string>
+
+    <string name="register_bad_pass">Notice that both passwords must be equal!</string>
+    <string name="register_lbl">Create a new account</string>
+    <string name="register_ok">You have just registered! \n Now check your email</string>
+    <string name="register_ko">There was a fault while \n registering the user \n Try again, please.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

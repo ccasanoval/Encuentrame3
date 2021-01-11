@@ -9,10 +9,6 @@ import com.cesoft.feature_alert.AlertFragment
 import com.cesoft.feature_poi.PoiFragment
 import com.cesoft.feature_route.RouteFragment
 
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
@@ -26,7 +22,6 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     }
 
     override fun getPageTitle(position: Int): CharSequence {
-        //if(true)context.resources.getString(R.string.app_name)
         return when(position) {
             LUGARES -> context.resources.getString(R.string.lugares)
             RUTAS -> context.resources.getString(R.string.rutas)

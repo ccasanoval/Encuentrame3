@@ -11,9 +11,9 @@ interface AuthServiceContract {
     suspend fun login(data: Intent): Boolean
 
     fun getCurrentUser(): User?
-    fun getCurrentUserName() : String?
-    fun getCurrentUserEmail(): String?
-    fun getCurrentUserImage(): String?
-    fun getCurrentUserPhone(): String?
-    fun getCurrentUserId(): String?
+//    fun getCurrentUserName() : String?
+//    fun getCurrentUserEmail(): String?
+//    fun getCurrentUserImage(): String?
+//    fun getCurrentUserPhone(): String?
+//    fun getCurrentUserId(): String?
 }

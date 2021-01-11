@@ -73,11 +73,11 @@ class AuthService(context: Context) : AuthServiceContract {
             auth.currentUser.photoUrl
         )
     }
-    override fun getCurrentUserName() : String? = auth.currentUser?.displayName
-    override fun getCurrentUserEmail(): String? = auth.currentUser?.email
-    override fun getCurrentUserImage(): String? = auth.currentUser?.photoUrl
-    override fun getCurrentUserPhone(): String? = auth.currentUser?.phone
-    override fun getCurrentUserId(): String? = auth.currentUser?.uid
+//    override fun getCurrentUserName() : String? = auth.currentUser?.displayName
+//    override fun getCurrentUserEmail(): String? = auth.currentUser?.email
+//    override fun getCurrentUserImage(): String? = auth.currentUser?.photoUrl
+//    override fun getCurrentUserPhone(): String? = auth.currentUser?.phone
+//    override fun getCurrentUserId(): String? = auth.currentUser?.uid
 
     companion object {
         private const val tag = "AuthService:hms"
