@@ -16,6 +16,7 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
     private val _msg = MutableLiveData<Pair<Int, String?>>()
     val msg: LiveData<Pair<Int, String?>> = _msg
 
+    fun getUser() = authService.getCurrentUser()
     fun isLoggedIn() = authService.isLoggedIn()
     fun getIntent() = authService.getLoginIntent()
     fun login(data: Intent) {
@@ -28,6 +29,32 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
             else {
                 android.util.Log.e(tag, "login error --------------------")
                 _msg.postValue(Pair(R.string.login_error, null))
+            }
+        }
+    }
+    fun login(email: String, pwd: String) {
+        viewModelScope.launch {
+            if(authService.login(email, pwd)) {
+                android.util.Log.e(tag, "login ok --------------------")
+                _msg.postValue(Pair(R.string.login_ok, authService.getCurrentUser()?.secureName))
+                _goto.postValue(GOTO.Finish)
+            }
+            else {
+                android.util.Log.e(tag, "login error --------------------")
+                _msg.postValue(Pair(R.string.login_error, null))
+            }
+        }
+    }
+
+    fun addUser(email: String, pwd: String) {
+        viewModelScope.launch {
+            if(authService.addUser(email, pwd)) {
+                android.util.Log.e(tag, "login ok --------------------")
+                _msg.postValue(Pair(R.string.register_ok, authService.getCurrentUser()?.email))
+            }
+            else {
+                android.util.Log.e(tag, "login error --------------------")
+                _msg.postValue(Pair(R.string.register_error, null))
             }
         }
     }

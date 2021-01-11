@@ -1,8 +1,6 @@
 package com.cesoft.feature_login.ui
 
 import android.app.Activity
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -10,18 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.cesoft.feature_login.R
+import com.cesoft.feature_login.Util
 import com.google.android.gms.common.SignInButton
 import com.google.android.material.textfield.TextInputLayout
 import org.koin.android.ext.android.inject
 
-//NOTE: Change encuentrame3 to feature_login
+
+//NOTE: Remember to change package_name from encuentrame3 to feature_login after downloading google-services.json
 // "client": [{
 //      "client_info": {
 //        "android_client_info": {
@@ -35,8 +32,8 @@ class LoginFragment : Fragment() {
             vm.login(data)
         }
         else {
-            Log.e(tag, "resultLauncher:e: Google Sign In failed: ----------------------------")
-            Toast.makeText(context, R.string.login_error, Toast.LENGTH_LONG).show()
+            Log.e(tag,"resultLauncher:e: Google Sign In failed: ---------------------- ${result.resultCode} : $data")
+            Toast.makeText(context, R.string.login_error_google, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -45,17 +42,20 @@ class LoginFragment : Fragment() {
         vm.goto.observe(this, { goto: LoginViewModel.GOTO ->
             when(goto) {
                 LoginViewModel.GOTO.Finish -> {
-                    requireActivity().finish()
+                    val act = requireActivity()
+                    Log.e(LoginFragment.tag,"LoginViewModel.GOTO.Finish ----------1----" + act.javaClass.canonicalName)
+                    Log.e(LoginFragment.tag,"LoginViewModel.GOTO.Finish ----------2----" + vm.getUser())
+                    act.finish()
                 }
             }
         })
         vm.msg.observe(this, { pair ->
+            showWait(false)
             val msg = String.format(getString(pair.first), pair.second)
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
         })
 
         if(vm.isLoggedIn()) {
-            android.util.Log.e(tag, "Already logged in...")
             requireActivity().finish()
             return
         }
@@ -77,6 +77,12 @@ class LoginFragment : Fragment() {
         //return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
+    private fun showWait(on: Boolean) {
+        val progressBar: ProgressBar = requireView().findViewById(R.id.progressBar)
+        if(on) progressBar.visibility = View.VISIBLE
+        else progressBar.visibility = View.GONE
+    }
+
     private fun enter(rootView: View) {
         val lblTitulo = rootView.findViewById<TextView>(R.id.lblTitulo)
         val txtPassword = rootView.findViewById<EditText>(R.id.txtPassword)
@@ -87,29 +93,23 @@ class LoginFragment : Fragment() {
         val lblPassword2: TextInputLayout = rootView.findViewById(R.id.lblPassword2)
         lblPassword2.visibility = View.GONE
         lblTitulo.text = getString(R.string.enter_lbl)
-        //
-        btnPrivacyPolicy.setOnClickListener { v: View? ->
-            val browserIntent = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("https://cesweb-ef91a.firebaseapp.com")
-            )
-            startActivity(browserIntent)
-        }
-        //
-        btnSend.setOnClickListener { v: View? ->
-            //main.iniEsperaLogin();
-            /*login.login(txtEmail.text.toString(), txtPassword.text.toString(),
-                object : AuthListener() {
-                    fun onExito(usr: FirebaseUser) {
-                        logginOk(usr.email)
-                    }
 
-                    fun onFallo(e: Exception?) {
-                        //main.finEsperaLogin();
-                        Toast.makeText(context, getString(R.string.login_error), Toast.LENGTH_LONG)
-                            .show()
-                    }
-                })*/
+        /// Show Privacy Policy
+        btnPrivacyPolicy.setOnClickListener { v: View? ->
+           Util.showPrivacyPolicy(requireContext())
+        }
+
+        /// Email account login
+        btnSend.setOnClickListener { v: View? ->
+            val email = txtEmail.text.toString()
+            val pwd = txtPassword.text.toString()
+            if(email.isEmpty() || pwd.isEmpty()) {
+                Toast.makeText(requireContext(), R.string.login_error, Toast.LENGTH_LONG).show()
+            }
+            else {
+                showWait(true)
+                vm.login(email, pwd)
+            }
         }
         txtPassword.setOnEditorActionListener { v: TextView?, actionId: Int, event: KeyEvent? ->
             if (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER
@@ -120,6 +120,7 @@ class LoginFragment : Fragment() {
             false
         }
 
+        /// Google account login
         btnGoogle.setOnClickListener {
             resultLauncher.launch(vm.getIntent())
         }
@@ -132,16 +133,22 @@ class LoginFragment : Fragment() {
         val txtPassword2 = rootView.findViewById<EditText>(R.id.txtPassword2)
         val txtEmail = rootView.findViewById<EditText>(R.id.txtEmail)
         val btnSend = rootView.findViewById<Button>(R.id.btnSend)
-        val btnGoogle: SignInButton = rootView.findViewById(R.id.btnGoogle)
+        val btnGoogle = rootView.findViewById<SignInButton>(R.id.btnGoogle)
+        val lblLoginGoogle = rootView.findViewById<TextView>(R.id.lblLoginGoogle)
         btnGoogle.visibility = View.GONE
+        lblLoginGoogle.visibility = View.GONE
         lblTitulo.text = getString(R.string.register_lbl)
         btnSend.setOnClickListener { v: View? ->
-            if (txtPassword.text.toString() != txtPassword2.text.toString()) {
-                Toast.makeText(context, getString(R.string.register_bad_pass), Toast.LENGTH_LONG)
-                    .show()
+            if(txtEmail.text.isEmpty() || txtPassword.text.isEmpty()) {
+                Toast.makeText(context, getString(R.string.register_empty), Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            //main.iniEsperaLogin();
+            if(txtPassword.text.toString() != txtPassword2.text.toString()) {
+                Toast.makeText(context, getString(R.string.register_bad_pass), Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            showWait(true)
+            vm.addUser(txtEmail.text.toString(), txtPassword.text.toString())
             /*login.addUser(txtEmail.text.toString(), txtPassword.text.toString(),
                 object : AuthListener() {
                     fun onExito(usr: FirebaseUser?) {
@@ -169,10 +176,12 @@ class LoginFragment : Fragment() {
         val lblTitulo = rootView.findViewById<TextView>(R.id.lblTitulo)
         val txtEmail = rootView.findViewById<EditText>(R.id.txtEmail)
         val btnSend = rootView.findViewById<Button>(R.id.btnSend)
-        val btnGoogle: SignInButton = rootView.findViewById(R.id.btnGoogle)
-        val lblPassword: TextInputLayout = rootView.findViewById(R.id.lblPassword)
-        val lblPassword2: TextInputLayout = rootView.findViewById(R.id.lblPassword2)
+        val btnGoogle = rootView.findViewById<SignInButton>(R.id.btnGoogle)
+        val lblPassword = rootView.findViewById<TextInputLayout>(R.id.lblPassword)
+        val lblPassword2 = rootView.findViewById<TextInputLayout>(R.id.lblPassword2)
+        val lblLoginGoogle = rootView.findViewById<TextView>(R.id.lblLoginGoogle)
         btnGoogle.visibility = View.GONE
+        lblLoginGoogle.visibility = View.GONE
         lblPassword.visibility = View.GONE
         lblPassword2.visibility = View.GONE
         lblTitulo.text = getString(R.string.recover_lbl)
@@ -202,7 +211,6 @@ class LoginFragment : Fragment() {
     companion object {
         private const val tag = "LoginFrg"
         private const val ARG_SECTION_NUMBER = "section_number"
-        private const val RC_SIGN_IN = 9001
 
         const val MAX_PAGES = 3
         const val ENTER = 0

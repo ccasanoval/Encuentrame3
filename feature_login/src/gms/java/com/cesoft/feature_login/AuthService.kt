@@ -2,7 +2,6 @@ package com.cesoft.feature_login
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import com.cesoft.feature_login.model.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -16,11 +15,13 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 class AuthService(val context: Context) : AuthServiceContract {
+
     override fun isLoggedIn(): Boolean = FirebaseAuth.getInstance().currentUser != null
-    //override fun login() {  }
+
     override fun logout() {
         FirebaseAuth.getInstance().signOut()
     }
+
     override fun getLoginIntent(): Intent {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(context.getString(R.string.default_web_client_id))
@@ -29,6 +30,7 @@ class AuthService(val context: Context) : AuthServiceContract {
         val signInClient: GoogleSignInClient = GoogleSignIn.getClient(context, gso)
         return signInClient.signInIntent
     }
+
     override suspend fun login(data: Intent): Boolean {
         return suspendCoroutine { continuation ->
             val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
@@ -51,7 +53,17 @@ class AuthService(val context: Context) : AuthServiceContract {
         }
     }
 
-
+    override suspend fun login(email: String, pwd: String): Boolean {
+        return suspendCoroutine { continuation ->
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, pwd)
+                .addOnSuccessListener {
+                    continuation.resume(true)
+                }
+                .addOnFailureListener {
+                    continuation.resume(false)
+                }
+        }
+    }
 
     override fun getCurrentUser(): User? {
         val auth = FirebaseAuth.getInstance()
@@ -63,9 +75,18 @@ class AuthService(val context: Context) : AuthServiceContract {
             auth.currentUser?.photoUrl.toString()
         )
     }
-//    override fun getCurrentUserId(): String? = user?.uid
-//    override fun getCurrentUserName() : String? = user?.name
-//    override fun getCurrentUserEmail(): String? = user?.email
-//    override fun getCurrentUserPhone(): String? = user?.phone
-//    override fun getCurrentUserImage(): String? = user?.image
+
+    //TODO: Mostrar reglas de Firebase para crear usuarios...(en caso de error...)
+    override suspend fun addUser(email: String, pwd: String): Boolean {
+        return suspendCoroutine { continuation ->
+            val auth = FirebaseAuth.getInstance()
+            auth.createUserWithEmailAndPassword(email, pwd)
+                .addOnSuccessListener {
+                    continuation.resume(true)
+                }
+                .addOnFailureListener {
+                    continuation.resume(false)
+                }
+        }
+    }
 }

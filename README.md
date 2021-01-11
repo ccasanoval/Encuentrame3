@@ -1,7 +1,7 @@
 # Encuentrame3
 
-Android App for storing your points of interest, create geofence alerts and trace your path storing routes.
-
+Android app developed in Kotlin and making use of both Google Mobile Services and Huawei Mobile Services.
+The app tracks your walking or driving path, store points of interest and alerts when entering geofences.
 
 Features:
 =========

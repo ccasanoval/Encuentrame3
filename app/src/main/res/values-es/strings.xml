@@ -17,27 +17,23 @@
 	] -->
 <resources>
 	<!-- App -->
+
+
+
+
 	<string name="app_name">Encuentrame!</string>
 	<string name="app_desc">\nAplicación para la gestión de lugares de interés, con avisos por geo-posicionamiento y registro de rutas. Podrás administrar  tus geo-datos fácilmente, pues serán almacenados en la nube.\n\n</string>
 	<string name="app_lice_tit">Licencia:</string>
 	<string name="app_vers_tit">Versión:</string>
 
-
-
-
-
-
 	<string name="activo">Activo</string>
 	<string name="aviso">Mensaje de aviso</string>
-	<string name="clave">Clave</string>
-	<string name="clave_confirmar">Confirmar Clave</string>
-	<string name="privacy_policy">Política de Privacidad</string>
 	<string name="descripcion">Descripción</string>
 	<string name="direccion">Dirección…</string>
 	<string name="estadisticas">Estadísticas</string>
 	<string name="estadisticas_format" formatted="false">Longitud:\t\t\t\t\t\t%1$s\nTiempo:\t\t\t\t\t\t\t%2$s\nVelocidad.Med:\t\t%3$s\nVelocidad Min:\t\t%4$s\nVelocidad Max:\t\t%5$s\nAltitud Min:\t\t\t\t%6$s\nAltitud Max:\t\t\t\t%7$s\n</string>
 	<string name="en_zona_aviso">En zona de aviso</string>
-	<string name="enter_lbl">Introduce tu usuario</string>
+	<!-- string name="enter_lbl">Introduce tu usuario</string-->
 	<string name="nombre">Nombre</string>
 	<string name="radio">Radio</string>
 
@@ -108,17 +104,6 @@
 	<string name="widget_lugar">Lugares</string>
 	<string name="widget_ruta">Rutas</string>
 
-	<!-- Recover -->
-	<string name="recover_ko">Ocurrió un error al recuperar \n la cuenta de usuario</string>
-	<string name="recover_lbl">Recupera tu clave</string>
-	<string name="recover_ok">Te hemos enviado un correo \n para que recurperes la cuenta</string>
-
-	<!-- Register -->
-	<string name="register_lbl">Crea una cuenta</string>
-	<string name="register_ok">¡Te has registrado con éxito! \n Ahora comprueba tu correo</string>
-	<string name="register_bad_pass">¡Atención, ambas claves deben ser iguales!</string>
-	<string name="register_ko">Ocurrió un error al \n registrar el usuario \n Inténtelo de nuevo, por favor.</string>
-
 	<!-- Error -->
 	<string name="err_get_ruta_pts">Error al obtener los puntos de la ruta</string>
 	<string name="no_camera_hardware">Este dispositivo no tiene cámara</string>
@@ -148,11 +133,6 @@
 	<string name="sin_posicion">Sin posición</string>
 	<string name="sin_nombre">Debe establecer un nombre…</string>
 	<string name="sin_lugar">Debe establecer una posición…</string>
-
-	<!-- Login -->
-	<string name="login">Iniciar sesión</string>
-	<string name="login_error">Usuario o contraseña incorrectas</string>
-	<string name="login_ok">Bienvenido %s</string>
 
 	<!-- Estado -->
 	<string name="in_vehicle">En un vehículo</string>

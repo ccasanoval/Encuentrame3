@@ -17,21 +17,18 @@
 	] -->
 <resources>
     <!-- App -->
-    <string name="app_name">Find me!</string>
     <string name="app_lice" translatable="false">2016-2021  Cesar Casanova \n(Creative Commons NC-SA)</string>
     <string name="app_vers" translatable="false">2021  Ver. %s</string>
-    <string name="app_lice_tit">Licence</string>
-    <string name="app_vers_tit">Version:</string>
-    <string name="app_desc">\nApp for the management of personal points of interest. It counts with geo-position alerts and geo-tracking. As the data is saved to the cloud, you can manage your geo-data easily.\n\n</string>
-
     <string name="email" translatable="false">eMail</string>
     <string name="lat_lon" translatable="false">Lat/Lon</string>
 
+    <string name="app_name">Find me!</string>
+    <string name="app_desc">\nApp for the management of personal points of interest. It counts with geo-position alerts and geo-tracking. As the data is saved to the cloud, you can manage your geo-data easily.\n\n</string>
+    <string name="app_lice_tit">Licence</string>
+    <string name="app_vers_tit">Version:</string>
+
     <string name="activo">Active</string>
     <string name="aviso">Alert message</string>
-    <string name="clave">Password</string>
-    <string name="clave_confirmar">Repeat password</string>
-    <string name="privacy_policy">Privacy Policy</string>
     <string name="descripcion">Description</string>
     <string name="direccion">Address…</string>
     <string name="estadisticas">Statistics</string>
@@ -107,16 +104,6 @@
     <string name="widget_lugar">Points</string>
     <string name="widget_ruta">Routes</string>
 
-    <!-- Recover -->
-    <string name="recover_ko">There was a fault while \n resetting the user\'s account</string>
-    <string name="recover_lbl">Reset your password</string>
-    <string name="recover_ok">An email to recover your \n password was sent to you</string>
-
-    <!-- Register -->
-    <string name="register_bad_pass">Notice that both passwords must be equal!</string>
-    <string name="register_lbl">Create a new account</string>
-    <string name="register_ok">You have just registered! \n Now check your email</string>
-    <string name="register_ko">There was a fault while \n registering the user \n Try again, please.</string>
 
     <!-- Error -->
     <string name="err_get_ruta_pts">Failed to retrieve route data</string>
@@ -148,11 +135,6 @@
     <string name="sin_nombre">A name must be stablished…</string>
     <string name="sin_posicion">No location</string>
     <string name="sin_filtro">Search parameters removed</string>
-
-    <!-- Login -->
-    <string name="login">Log in</string>
-    <string name="login_error">Wrong user or password</string>
-    <string name="login_ok">Welcome %s</string>
 
     <!-- Estado -->
     <string name="in_vehicle">In a vehicle</string>

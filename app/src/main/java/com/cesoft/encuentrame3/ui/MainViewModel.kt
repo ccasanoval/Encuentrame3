@@ -21,11 +21,11 @@ class MainViewModel(private val authService: AuthService): ViewModel(),
     fun isLoggedIn() = authService.isLoggedIn()
     fun getCurrentUser() = authService.getCurrentUser()
 
-    private fun logout() {
-        viewModelScope.launch {
-            authService.logout()
-        }
-    }
+//    private fun logout() {
+//        viewModelScope.launch {
+//            authService.logout()
+//        }
+//    }
 
     //Implements NavigationView.OnNavigationItemSelectedListener
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

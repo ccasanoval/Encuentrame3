@@ -36,14 +36,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if(checkLogin()) {
-            setContentView(R.layout.activity_main)
-            setupToolbar()
-            setupDrawerMenu()
-            setupFloatingButton()
-            setupTabs()
-            iniLivedata()
-        }
+        setContentView(R.layout.activity_main)
+        setupToolbar()
+        setupDrawerMenu()
+        setupFloatingButton()
+        setupTabs()
+        iniLivedata()
+        checkLogin()
     }
     private fun checkLogin(): Boolean {
         val isLoggedIn = vm.isLoggedIn()
@@ -69,7 +68,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        iniCurrentUserHeader()
         navView.setNavigationItemSelectedListener(vm)
     }
     private fun iniCurrentUserHeader() {
@@ -78,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         val userName = view.getHeaderView(0).findViewById<TextView>(R.id.userName)
         val userEmail= view.getHeaderView(0).findViewById<TextView>(R.id.userEmail)
         val userImage= view.getHeaderView(0).findViewById<ImageView>(R.id.userImage)
-        userName?.text = user?.name
+        userName?.text = user?.secureName
         userEmail?.text = user?.email
         if( ! user?.image.isNullOrBlank()) {
             val listener = object: CustomTarget<Bitmap>() {
@@ -137,6 +135,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        iniCurrentUserHeader()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
