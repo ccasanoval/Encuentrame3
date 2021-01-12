@@ -37,10 +37,7 @@ class AuthService(val context: Context) : AuthServiceContract {
             val account = task.result
             if (task.isSuccessful) {
                 account?.let { googleSignInAccount ->
-                    val credential = GoogleAuthProvider.getCredential(
-                        googleSignInAccount.idToken,
-                        null
-                    )
+                    val credential = GoogleAuthProvider.getCredential(googleSignInAccount.idToken, null)
                     val firebaseAuth = FirebaseAuth.getInstance()
                     firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task: Task<AuthResult?> ->
                         if(task.exception == null)
@@ -67,13 +64,7 @@ class AuthService(val context: Context) : AuthServiceContract {
 
     override fun getCurrentUser(): User? {
         val auth = FirebaseAuth.getInstance()
-        return User(
-            auth.currentUser?.uid,
-            auth.currentUser?.displayName,
-            auth.currentUser?.email,
-            auth.currentUser?.phoneNumber,
-            auth.currentUser?.photoUrl.toString()
-        )
+        return User(auth.currentUser?.uid, auth.currentUser?.displayName, auth.currentUser?.email, auth.currentUser?.phoneNumber, auth.currentUser?.photoUrl.toString())
     }
 
     //TODO: Mostrar reglas de Firebase para crear usuarios...(en caso de error...)
@@ -81,6 +72,19 @@ class AuthService(val context: Context) : AuthServiceContract {
         return suspendCoroutine { continuation ->
             val auth = FirebaseAuth.getInstance()
             auth.createUserWithEmailAndPassword(email, pwd)
+                .addOnSuccessListener {
+                    continuation.resume(true)
+                }
+                .addOnFailureListener {
+                    continuation.resume(false)
+                }
+        }
+    }
+
+    override suspend fun recover(email: String): Boolean {
+        return suspendCoroutine { continuation ->
+            val auth = FirebaseAuth.getInstance()
+            auth.sendPasswordResetEmail(email)
                 .addOnSuccessListener {
                     continuation.resume(true)
                 }

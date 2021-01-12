@@ -13,16 +13,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.cesoft.feature_login.R
 import com.cesoft.feature_login.Util
-import com.google.android.gms.common.SignInButton
-import com.google.android.material.textfield.TextInputLayout
 import org.koin.android.ext.android.inject
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
-//NOTE: Remember to change package_name from encuentrame3 to feature_login after downloading google-services.json
-// "client": [{
-//      "client_info": {
-//        "android_client_info": {
-//          "package_name": "com.cesoft.feature_login"
-//        }
+
 class LoginFragment : Fragment() {
     private val vm: LoginViewModel by inject()
     private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -31,24 +26,28 @@ class LoginFragment : Fragment() {
             vm.login(data)
         }
         else {
-            Log.e(tag,"resultLauncher:e: Google Sign In failed: ---------------------- ${result.resultCode} : $data")
+            Log.e(tag,"resultLauncher:e: Huawei Sign In failed: ---------------------- ${result.resultCode} : $data")
             Toast.makeText(context, R.string.login_error_google, Toast.LENGTH_LONG).show()
         }
     }
-
     private lateinit var lblTitulo: TextView
     private lateinit var lblLoginServiceId: TextView
     private lateinit var txtEmail: EditText
     private lateinit var txtPassword: EditText
     private lateinit var txtPassword2: TextView
+    private lateinit var txtVerifyCode: EditText
+    private lateinit var txtPhone: EditText
     private lateinit var btnSend: Button
+    private lateinit var btnGetVerifyCodeEmail: Button
+    private lateinit var btnGetVerifyCodePhone: Button
     private lateinit var btnLoginServiceId: Button
     private lateinit var progressBar: ProgressBar
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         vm.goto.observe(this, { goto: LoginViewModel.GOTO ->
-            when(goto) {
+            when (goto) {
                 LoginViewModel.GOTO.Finish -> {
                     val act = requireActivity()
                     act.finish()
@@ -74,11 +73,11 @@ class LoginFragment : Fragment() {
         val sectionNumber = arguments?.getInt(ARG_SECTION_NUMBER) ?: 0
         val rootView: View = inflater.inflate(R.layout.fragment_login, container, false)
         iniFields(rootView)
-        when (sectionNumber) {
-            ENTER -> login(rootView)
-            SIGNIN -> signin(rootView)
-            RECOVER -> recover(rootView)
-            else -> login(rootView)
+        when(sectionNumber) {
+            ENTER -> login()
+            SIGNIN -> signIn()
+            RECOVER -> recover()
+            else -> login()
         }
         return rootView
     }
@@ -88,7 +87,11 @@ class LoginFragment : Fragment() {
         txtEmail = rootView.findViewById(R.id.txtEmail)
         txtPassword = rootView.findViewById(R.id.txtPassword)
         txtPassword2 = rootView.findViewById(R.id.txtPassword2)
+        txtVerifyCode = rootView.findViewById(R.id.txtVerifyCode)
+        txtPhone = rootView.findViewById(R.id.txtPhone)
         btnSend = rootView.findViewById(R.id.btnSend)
+        btnGetVerifyCodeEmail = rootView.findViewById(R.id.btnGetVerifyCodeEmail)
+        btnGetVerifyCodePhone = rootView.findViewById(R.id.btnGetVerifyCodePhone)
         btnLoginServiceId = rootView.findViewById(R.id.btnLoginServiceId)
         progressBar = rootView.findViewById(R.id.progressBar)
         val btnPrivacyPolicy = rootView.findViewById<Button>(R.id.btnPrivacyPolicy)
@@ -98,20 +101,18 @@ class LoginFragment : Fragment() {
     }
 
     private fun showWait(on: Boolean) {
-        val progressBar: ProgressBar = requireView().findViewById(R.id.progressBar)
+        //val progressBar: ProgressBar = requireView().findViewById(R.id.progressBar)
         if(on) progressBar.visibility = View.VISIBLE
         else progressBar.visibility = View.GONE
     }
 
     /// Login
-    private fun login(rootView: View) {
-        val lblTitulo = rootView.findViewById<TextView>(R.id.lblTitulo)
-        val txtPassword = rootView.findViewById<EditText>(R.id.txtPassword)
-        val txtEmail = rootView.findViewById<EditText>(R.id.txtEmail)
-        val btnSend = rootView.findViewById<Button>(R.id.btnSend)
-        val btnGoogle: SignInButton = rootView.findViewById(R.id.btnGoogle)
-        val lblPassword2: TextInputLayout = rootView.findViewById(R.id.lblPassword2)
-        lblPassword2.visibility = View.GONE
+    private fun login() {
+        txtPassword2.visibility = View.GONE
+        txtVerifyCode.visibility = View.GONE
+        txtPhone.visibility = View.GONE
+        btnGetVerifyCodeEmail.visibility = View.GONE
+        btnGetVerifyCodePhone.visibility = View.GONE
         lblTitulo.text = getString(R.string.enter_lbl)
 
         /// Email account login
@@ -136,51 +137,92 @@ class LoginFragment : Fragment() {
         }
 
         /// Google account login
-        btnGoogle.setOnClickListener {
+        btnLoginServiceId.setOnClickListener {
             resultLauncher.launch(vm.getIntent())
         }
     }
 
     /// Sign In
-    private fun signin(rootView: View) {
-        val lblTitulo = rootView.findViewById<TextView>(R.id.lblTitulo)
-        val txtPassword = rootView.findViewById<EditText>(R.id.txtPassword)
-        val txtPassword2 = rootView.findViewById<EditText>(R.id.txtPassword2)
-        val txtEmail = rootView.findViewById<EditText>(R.id.txtEmail)
-        val btnSend = rootView.findViewById<Button>(R.id.btnSend)
-        val btnGoogle = rootView.findViewById<SignInButton>(R.id.btnGoogle)
-        val lblLoginGoogle = rootView.findViewById<TextView>(R.id.lblLoginGoogle)
-        btnGoogle.visibility = View.GONE
-        lblLoginGoogle.visibility = View.GONE
+    private fun signIn() {
+        btnLoginServiceId.visibility = View.GONE
+        lblLoginServiceId.visibility = View.GONE
         lblTitulo.text = getString(R.string.signin_lbl)
         btnSend.setText(R.string.signin_btn)
         btnSend.setOnClickListener {
-            if(txtEmail.text.isEmpty() || txtPassword.text.isEmpty()) {
-                Toast.makeText(context, getString(R.string.signin_empty), Toast.LENGTH_LONG).show()
-                return@setOnClickListener
+            if(validatePwd(txtEmail.text.toString(), txtPassword.text.toString(), txtPassword2.text.toString())) {
+                showWait(true)
+                vm.addUser(txtEmail.text.toString(), txtPassword.text.toString(), txtVerifyCode.text.toString())
             }
-            if(txtPassword.text.toString() != txtPassword2.text.toString()) {
-                Toast.makeText(context, getString(R.string.signin_bad_pass), Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-            showWait(true)
-            vm.addUser(txtEmail.text.toString(), txtPassword.text.toString())
         }
+        btnGetVerifyCodeEmail.setOnClickListener {
+            if(txtEmail.text.isEmpty()) {
+                Toast.makeText(requireContext(), R.string.signin_email_empty, Toast.LENGTH_LONG).show()
+            }
+            else {
+                vm.getVerifyCodeEmail(txtEmail.text.toString())
+            }
+        }
+        btnGetVerifyCodePhone.setOnClickListener {
+            if(txtPhone.text.isEmpty()) {
+                Toast.makeText(requireContext(), R.string.signin_phone_empty, Toast.LENGTH_LONG).show()
+            }
+            else {
+                vm.getVerifyCodePhone(txtPhone.text.toString())
+            }
+        }
+    }
+    /*
+    *   The password must:
+    * Contain at least eight characters.
+    * Contain at least two types of the following characters:
+    * Lowercase letter
+    * Uppercase letter
+    * Digit (0–9)
+    * Space or special character: `!@#$%^&*()-_=+\|[{}];:'",<.>/?
+    * Be different from the mobile number or email address.
+    * REGEX = (?=(?:.*?[0-9]){2})
+    * */
+    private fun validatePwd(email: String, pwd: String, pwd2: String): Boolean {
+        if(email.isEmpty() || pwd.isEmpty()) {
+            Toast.makeText(context, getString(R.string.signin_empty), Toast.LENGTH_LONG).show()
+            return false
+        }
+        if(email == pwd) {
+            Toast.makeText(requireContext(), R.string.signin_pwd_email_error, Toast.LENGTH_LONG).show()
+            return false
+        }
+        if(pwd != pwd2) {
+            Toast.makeText(requireContext(), R.string.signin_bad_pass, Toast.LENGTH_LONG).show()
+            return false
+        }
+        if(pwd.length < 8) {
+            Toast.makeText(requireContext(), R.string.signin_pwd_8min_error, Toast.LENGTH_LONG).show()
+            return false
+        }
+
+        val pattern: Pattern
+        val matcher: Matcher
+        val patternStr = "^(?=.{8,}$)(?=(?:.*?[A-Z]){2})(?=(?:.*?[a-z]){2})(?=(?:.*?[0-9]){2})(?=(?:.*?[`!@#$%^&*()\\-_=+|\\[{}\\];:'\",<.>/?]){2}).*$"
+        //val patternStr = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[`!@#\$%^&*()\\-_=+|\\[{}\\];:'\",<.>/?])(?=\\S+$).{4,}$"
+        pattern = Pattern.compile(patternStr)
+        matcher = pattern.matcher(pwd)
+        if( ! matcher.matches()) {
+            Toast.makeText(requireContext(), R.string.signin_pwd_8min_error, Toast.LENGTH_LONG).show()
+        }
+
+        return true
     }
 
     /// Recover
-    private fun recover(rootView: View) {
-        val lblTitulo = rootView.findViewById<TextView>(R.id.lblTitulo)
-        val txtEmail = rootView.findViewById<EditText>(R.id.txtEmail)
-        val btnSend = rootView.findViewById<Button>(R.id.btnSend)
-        val btnGoogle = rootView.findViewById<SignInButton>(R.id.btnGoogle)
-        val lblPassword = rootView.findViewById<TextInputLayout>(R.id.lblPassword)
-        val lblPassword2 = rootView.findViewById<TextInputLayout>(R.id.lblPassword2)
-        val lblLoginGoogle = rootView.findViewById<TextView>(R.id.lblLoginGoogle)
-        btnGoogle.visibility = View.GONE
-        lblLoginGoogle.visibility = View.GONE
-        lblPassword.visibility = View.GONE
-        lblPassword2.visibility = View.GONE
+    private fun recover() {
+        txtVerifyCode.visibility = View.GONE
+        txtPhone.visibility = View.GONE
+        btnGetVerifyCodeEmail.visibility = View.GONE
+        btnGetVerifyCodePhone.visibility = View.GONE
+        btnLoginServiceId.visibility = View.GONE
+        lblLoginServiceId.visibility = View.GONE
+        txtPassword.visibility = View.GONE
+        txtPassword2.visibility = View.GONE
         lblTitulo.text = getString(R.string.recover_lbl)
         btnSend.setText(R.string.recover_btn)
         btnSend.setOnClickListener {
@@ -195,7 +237,7 @@ class LoginFragment : Fragment() {
 
 
     companion object {
-        private const val tag = "LoginFrg"
+        //private const val tag = "LoginFrg"
         private const val ARG_SECTION_NUMBER = "section_number"
 
         const val MAX_PAGES = 3

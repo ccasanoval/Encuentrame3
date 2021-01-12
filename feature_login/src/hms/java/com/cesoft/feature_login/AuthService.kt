@@ -3,9 +3,11 @@ package com.cesoft.feature_login
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import com.cesoft.feature_login.model.User
-import com.huawei.agconnect.auth.AGConnectAuth
-import com.huawei.agconnect.auth.HwIdAuthProvider
+import com.cesoft.feature_login.ui.LoginViewModel
+import com.huawei.agconnect.auth.*
+import com.huawei.hmf.tasks.TaskExecutors
 import com.huawei.hms.common.ApiException
 import com.huawei.hms.support.api.entity.auth.Scope
 import com.huawei.hms.support.api.entity.common.CommonConstant.SCOPE.ACCOUNT_BASEPROFILE
@@ -13,6 +15,8 @@ import com.huawei.hms.support.hwid.HuaweiIdAuthManager
 import com.huawei.hms.support.hwid.request.HuaweiIdAuthParams
 import com.huawei.hms.support.hwid.request.HuaweiIdAuthParamsHelper
 import com.huawei.hms.support.hwid.service.HuaweiIdAuthService
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -29,16 +33,9 @@ class AuthService(context: Context) : AuthServiceContract {
     }
 
     override fun isLoggedIn(): Boolean = auth.currentUser != null
-//    override suspend fun login(): Boolean {
-//        return suspendCoroutine { continuation ->
-//            val task = service.silentSignIn()
-//            task.addOnCompleteListener { t ->
-//                android.util.Log.e(tag, "login: isCanceled=${t.isCanceled} isComplete=${t.isComplete} isSuccessful=${t.isSuccessful}")
-//                continuation.resume(t.isSuccessful)
-//            }
-//        }
-//    }
+
     override fun logout() = auth.signOut()
+
     override fun getLoginIntent(): Intent = service.signInIntent
     override suspend fun login(data: Intent): Boolean {
         return suspendCoroutine { continuation ->
@@ -57,9 +54,118 @@ class AuthService(context: Context) : AuthServiceContract {
                     }
             }
             else {
-                Log.e(tag, "sign in failed : " + (authHuaweiIdTask.exception as ApiException).statusCode)
+                Log.e(
+                    tag,
+                    "sign in failed : " + (authHuaweiIdTask.exception as ApiException).statusCode
+                )
                 continuation.resume(false)
             }
+        }
+    }
+
+    /*
+    *   The password must:
+    * Contain at least eight characters.
+    * Contain at least two types of the following characters:
+    * Lowercase letter
+    * Uppercase letter
+    * Digit (0–9)
+    * Space or special character: `!@#$%^&*()-_=+\|[{}];:'",<.>/?
+    * Be different from the mobile number or email address.
+    * */
+    override suspend fun login(email: String, pwd: String): Boolean {
+        return suspendCoroutine { continuation ->
+//            val credential = EmailAuthProvider.credentialWithVerifyCode(
+            val credential = EmailAuthProvider.credentialWithPassword(email, pwd)
+            val usr = AGConnectAuth.getInstance().currentUser
+            continuation.resume(usr != null)
+/*
+            val emailUser = EmailUser.Builder()
+                .setEmail(email)
+                .setPassword(pwd) //optional
+                //.setVerifyCode(verifyCode)
+                .build()
+            AGConnectAuth.getInstance().createUser(emailUser)
+                .addOnSuccessListener {
+                    continuation.resume(true)
+                }
+                .addOnFailureListener { e ->
+                    continuation.resume(false)
+                }*/
+        }
+    }
+
+    override suspend fun addUser(email: String, pwd: String, verify: String): Boolean {
+        return suspendCoroutine { continuation ->
+            val emailUser = EmailUser.Builder()
+                .setEmail(email)
+                .setPassword(pwd) //optional
+                .setVerifyCode(verify)
+                .build()
+            android.util.Log.e(tag, "addUser ---------1-----------")
+            AGConnectAuth.getInstance().createUser(emailUser)
+                .addOnSuccessListener {
+                    android.util.Log.e(tag, "addUser ---------8-----------e=")
+                    continuation.resume(true)
+                }
+                .addOnFailureListener { e ->
+                    android.util.Log.e(tag, "addUser ---------9-----------e=$e")
+                    continuation.resume(false)
+                }
+        }
+    }
+    suspend fun getVerifyCodeEmail(email: String): Boolean {
+        return suspendCoroutine { continuation ->
+            val settings = VerifyCodeSettings.newBuilder()
+                .action(VerifyCodeSettings.ACTION_REGISTER_LOGIN)
+                .sendInterval(30) //shortest send interval ，30-120s
+                //.locale(Locale.getDefault())
+                //.locale(Locale.SIMPLIFIED_CHINESE) //optional,must contain country and language eg:zh_CN
+                .build()
+
+            android.util.Log.e(tag, "getVerifyCode:addOnSuccessListener: "+Locale.getDefault())
+
+            val task = EmailAuthProvider.requestVerifyCode(email, settings)
+            //task.addOnSuccessListener(TaskExecutors.uiThread(), {
+            task
+                .addOnSuccessListener(TaskExecutors.immediate(), {
+                    android.util.Log.e(tag, "getVerifyCode:addOnSuccessListener: verify code result = ${it.validityPeriod}")
+                    continuation.resume(true)
+                })
+                .addOnFailureListener(TaskExecutors.immediate(), { e ->
+                    android.util.Log.e(tag, "getVerifyCode:addOnFailureListener: e = $e")
+                    continuation.resume(false)
+                })
+        }
+    }
+    suspend fun getVerifyCodePhone(phone: String): Boolean {
+        return suspendCoroutine { continuation ->
+
+            val settings = VerifyCodeSettings.newBuilder()
+                .action(VerifyCodeSettings.ACTION_REGISTER_LOGIN)
+                .sendInterval(30) //shortest send interval ，30-120s
+                //.locale(Locale.getDefault())
+                //.locale(Locale.SIMPLIFIED_CHINESE) //optional,must contain country and language eg:zh_CN
+                .build()
+
+            //val countryCode: String = countryCodeEdit.getText().toString().trim { it <= ' ' }
+            //val phoneNumber: String = accountEdit.getText().toString().trim { it <= ' ' }
+            val task = PhoneAuthProvider.requestVerifyCode("", phone, settings)
+            task
+                .addOnSuccessListener(TaskExecutors.immediate(), {
+                    android.util.Log.e(tag, "getVerifyCodePhone:addOnSuccessListener: verify code result = ${it.validityPeriod}")
+                    continuation.resume(true)
+                })
+                .addOnFailureListener(TaskExecutors.immediate(), { e ->
+                    android.util.Log.e(tag, "getVerifyCodePhone:addOnFailureListener: e = $e")
+                    continuation.resume(false)
+                })
+        }
+    }
+
+    override suspend fun recover(email: String): Boolean {
+        return suspendCoroutine { continuation ->
+
         }
     }
 
@@ -73,11 +179,75 @@ class AuthService(context: Context) : AuthServiceContract {
             auth.currentUser.photoUrl
         )
     }
-//    override fun getCurrentUserName() : String? = auth.currentUser?.displayName
-//    override fun getCurrentUserEmail(): String? = auth.currentUser?.email
-//    override fun getCurrentUserImage(): String? = auth.currentUser?.photoUrl
-//    override fun getCurrentUserPhone(): String? = auth.currentUser?.phone
-//    override fun getCurrentUserId(): String? = auth.currentUser?.uid
+
+    private fun sendVerificationCode() {
+        /*val settings = VerifyCodeSettings.newBuilder()
+            .action(VerifyCodeSettings.ACTION_REGISTER_LOGIN)
+            .sendInterval(30) //shortest send interval ，30-120s
+            .locale(Locale.SIMPLIFIED_CHINESE) //optional,must contain country and language eg:zh_CN
+            .build()
+        if (type === LoginActivity.Type.EMAIL) {
+            val email: String = accountEdit.getText().toString().trim { it <= ' ' }
+            val task = EmailAuthProvider.requestVerifyCode(email, settings)
+            task.addOnSuccessListener(TaskExecutors.uiThread(), {
+                //You need to get the verification code from your email
+            }).addOnFailureListener(
+                TaskExecutors.uiThread(),
+                { e ->
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "requestVerifyCode fail:$e",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                })
+        } else {
+            val countryCode: String = countryCodeEdit.getText().toString().trim { it <= ' ' }
+            val phoneNumber: String = accountEdit.getText().toString().trim { it <= ' ' }
+            val task = PhoneAuthProvider.requestVerifyCode(countryCode, phoneNumber, settings)
+            task.addOnSuccessListener(TaskExecutors.uiThread(), {
+                //You need to get the verification code from your phone
+            }).addOnFailureListener(
+                TaskExecutors.uiThread(),
+                { e ->
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "requestVerifyCode fail:$e",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                })
+        }*/
+    }
+
+    fun phone() {
+        /*
+        val countryCode: String = countryCodeEdit.getText().toString().trim { it <= ' ' }
+        val phoneNumber: String = accountEdit.getText().toString().trim { it <= ' ' }
+        val password: String = passwordEdit.getText().toString().trim { it <= ' ' }
+        val verifyCode: String = verifyCodeEdit.getText().toString().trim { it <= ' ' }
+        val phoneUser = PhoneUser.Builder()
+            .setCountryCode(countryCode)
+            .setPhoneNumber(phoneNumber)
+            .setPassword(password) //optional
+            .setVerifyCode(verifyCode)
+            .build()
+        AGConnectAuth.getInstance().createUser(phoneUser)
+            .addOnSuccessListener {
+                startActivity(
+                    Intent(
+                        this@RegisterActivity,
+                        AuthMainActivity::class.java
+                    )
+                )
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(
+                    this@RegisterActivity,
+                    "createUser fail:$e",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }*/
+    }
+
 
     companion object {
         private const val tag = "AuthService:hms"

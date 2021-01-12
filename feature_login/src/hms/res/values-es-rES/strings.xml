@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="phone">Teléfono</string>
+
+    <string name="login_huawei">O usa tu cuenta Huawei</string>
+    <string name="login_huawei_btn">Entra en Huawei</string>
+    <string name="login_error_huawei">La cuenta de Huawei falló</string>
+
+    <string name="signin_phone_empty">Debe introducir el teléfono</string>
+    <string name="signin_email_empty">Debe introducir el eMail</string>
+    <string name="signin_verify_code_sent_email">El código de verificación se envió al eMail</string>
+    <string name="signin_verify_code_sent_phone">El código de verificación se envió al teléfono</string>
+    <string name="signin_verify_code_not_sent">Fallo al enviar el código de verificación</string>
+    <string name="signin_verify_code">Código de verificación</string>
+    <string name="signin_verify_code_email">Código por eMail</string>
+    <string name="signin_verify_code_phone">Código por teléfono</string>
+    <string name="signin_pwd_8min_error">La contraseña debe contener al menos 8 símbolos</string>
+    <string name="signin_pwd_email_error">La contraseña no debe ser igual al eMail</string>
+    <string name="signin_pwd_pattern_error"><![CDATA[
+    La contraseña debe contener los siguientes caracteres:
+    * Dos letras mayúsculas
+    * Dos letras minúsculas
+    * Dos dígitos (0–9)
+    * Dos caracteres especiales: !@#$%^&amp;*()-_=+\|[{}];:,<.>/?
+    ]]></string>
+</resources>

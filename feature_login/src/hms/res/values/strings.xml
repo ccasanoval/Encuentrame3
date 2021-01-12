@@ -1,1 +1,26 @@
-<resources></resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="phone">Phone</string>
+
+    <string name="login_huawei">Or login with Huawei</string>
+    <string name="login_huawei_btn">Enter Huawei</string>
+    <string name="login_error_huawei">Huawei account failed</string>
+
+    <string name="signin_phone_empty">Phone field must by filled in</string>
+    <string name="signin_email_empty">eMail field must by filled in</string>
+    <string name="signin_verify_code_sent_email">Verify code sent to the eMail</string>
+    <string name="signin_verify_code_sent_phone">Verify code sent to the phone</string>
+    <string name="signin_verify_code_not_sent">Failure sending verify code</string>
+    <string name="signin_verify_code">Verify code</string>
+    <string name="signin_verify_code_email">eMail Verify code</string>
+    <string name="signin_verify_code_phone">Phone Verify code</string>
+    <string name="signin_pwd_8min_error">Password must contain at least 8 characters</string>
+    <string name="signin_pwd_email_error">Password must be different than eMail</string>
+    <string name="signin_pwd_pattern_error"><![CDATA[
+    Password must contain the following characters:
+    * Two lowercase letters
+    * Two uppercase letters
+    * Two digits (0–9)
+    * Two special characters: !@#$%^&amp;*()-_=+\|[{}];:,<.>/?
+    ]]></string>
+</resources>

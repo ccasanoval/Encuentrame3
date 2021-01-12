@@ -6,21 +6,23 @@
     <string name="clave_confirmar">Confirmar Contraseña</string>
 
     <string name="enter_lbl">Introduce tu usuario</string>
-    <string name="login_google">O usa tu cuenta Google</string>
     <string name="login">Iniciar sesión</string>
+    <string name="login_google">O usa tu cuenta Google</string>
     <string name="login_error">Usuario o contraseña incorrectas</string>
     <string name="login_error_google">La cuenta de Google falló</string>
-    <string name="login_error_huawei">La cuenta de Huawei falló</string>
     <string name="login_empty">Usuario o contraseña vacías</string>
     <string name="login_ok">Bienvenido %s</string>
 
+    <string name="signin_btn">Crear cuenta</string>
+    <string name="signin_lbl">Crea una cuenta</string>
+	<string name="signin_ok">¡Te has registrado con éxito! \n Ahora comprueba tu correo</string>
+	<string name="signin_bad_pass">¡Atención, ambas contraseñas deben ser iguales!</string>
+    <string name="signin_empty">Debe completar ambos campos usuario y contraseña</string>
+	<string name="signin_error">Ocurrió un error al \n registrar el usuario \n Inténtelo de nuevo, por favor.</string>
+
+    <string name="recover_btn">Recuperar</string>
     <string name="recover_lbl">Recupera tu clave</string>
     <string name="recover_ok">Te hemos enviado un correo \n para que recurperes la cuenta</string>
     <string name="recover_error">Ocurrió un error al recuperar \n la cuenta de usuario</string>
-
-    <string name="register_lbl">Crea una cuenta</string>
-	<string name="register_ok">¡Te has registrado con éxito! \n Ahora comprueba tu correo</string>
-	<string name="register_bad_pass">¡Atención, ambas contraseñas deben ser iguales!</string>
-    <string name="register_empty">Debe completar ambos campos usuario y contraseña</string>
-	<string name="register_error">Ocurrió un error al \n registrar el usuario \n Inténtelo de nuevo, por favor.</string>
+    <string name="recover_empty">Debe completar el campo eMail</string>
 </resources>

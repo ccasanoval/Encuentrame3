@@ -10,19 +10,21 @@
     <string name="login">Log in</string>
     <string name="login_error">Wrong user or password</string>
     <string name="login_error_google">Google account failed</string>
-    <string name="login_error_huawei">Huawei account failed</string>
     <string name="login_empty">User or password empty</string>
     <string name="login_ok">Welcome %s</string>
 
-    <string name="recover_lbl">Reset your password</string>
-    <string name="recover_ok">An email to recover your \n password was sent to you</string>
-    <string name="recover_error">There was a fault while \n resetting the user\'s account</string>
+    <string name="signin_btn">Create Account</string>
+    <string name="signin_lbl">Create a new account</string>
+    <string name="signin_ok">You have just registered! \n Now check your email</string>
+    <string name="signin_bad_pass">Notice that both passwords must be filled and equal!</string>
+    <string name="signin_empty">User and password must be filled in</string>
+    <string name="signin_error">There was a fault while \n registering the user \n Try again, please.</string>
 
-    <string name="register_lbl">Create a new account</string>
-    <string name="register_ok">You have just registered! \n Now check your email</string>
-    <string name="register_bad_pass">Notice that both passwords must be equal!</string>
-    <string name="register_empty">User and password must be filled</string>
-    <string name="register_error">There was a fault while \n registering the user \n Try again, please.</string>
+    <string name="recover_btn">Recover</string>
+    <string name="recover_lbl">Recover your password</string>
+    <string name="recover_ok">An email to recover your \n password was sent to you</string>
+    <string name="recover_error">There was a fault while \n recovering the user\'s account</string>
+    <string name="recover_empty">Field eMail must be filled</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
