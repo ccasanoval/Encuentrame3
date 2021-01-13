@@ -16,7 +16,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -25,7 +24,6 @@ import com.cesoft.feature_login.ui.LoginActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
@@ -46,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun checkLogin(): Boolean {
         val isLoggedIn = vm.isLoggedIn()
-        android.util.Log.e(tag, "-----------------checkLogin = $isLoggedIn user = " + vm.getCurrentUser())
+        android.util.Log.e(TAG, "-----------------checkLogin = $isLoggedIn user = " + vm.getCurrentUser())
         if(!isLoggedIn) {
             goLogin()
         }
@@ -61,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_main),
+            setOf(R.id.nav_main, R.id.nav_poi_list, R.id.nav_poi_item),
             drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -74,9 +72,9 @@ class MainActivity : AppCompatActivity() {
         val userName = view.getHeaderView(0).findViewById<TextView>(R.id.userName)
         val userEmail= view.getHeaderView(0).findViewById<TextView>(R.id.userEmail)
         val userImage= view.getHeaderView(0).findViewById<ImageView>(R.id.userImage)
-        userName?.text = user?.secureName
-        userEmail?.text = user?.email
-        if( ! user?.image.isNullOrBlank()) {
+        userName?.text = user.secureName
+        userEmail?.text = user.email
+        if( ! user.image.isNullOrBlank()) {
             val listener = object: CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     userImage.setImageBitmap(resource)
@@ -85,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             }
             Glide.with(this)
                 .asBitmap()
-                .load(user?.image)
+                .load(user.image)
                 .into(listener)
         }
     }
@@ -151,6 +149,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val tag = "MainAct"
+        private const val TAG = "MainAct"
     }
 }

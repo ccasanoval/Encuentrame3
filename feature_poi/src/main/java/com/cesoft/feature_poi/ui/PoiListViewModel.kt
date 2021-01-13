@@ -1,14 +1,15 @@
-package com.cesoft.feature_poi
+package com.cesoft.feature_poi.ui
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.cesoft.feature_poi.Repo
 import com.cesoft.feature_poi.model.Poi
 import kotlinx.coroutines.launch
 
-class PoiViewModel : ViewModel() {
+class PoiListViewModel : ViewModel() {
     private val _list = MutableLiveData<List<Poi>>()
     val list: LiveData<List<Poi>> = _list
 
@@ -22,13 +23,13 @@ class PoiViewModel : ViewModel() {
                 _list.postValue(res.first)
             }
             if(res.second != null) {
-                Log.e(tag, "list:e: ${res.second}")
+                Log.e(TAG, "list:e: ${res.second}")
                 _msg.postValue(res.second.toString())
             }
         }
     }
 
     companion object {
-        private const val tag = "PoiVM"
+        private const val TAG = "PoiVM"
     }
 }

@@ -22,11 +22,9 @@ object Repo {
     private fun getDatabase(): DatabaseReference {
         return Cloud.getDatabase().child(NAME)
     }
-
     private fun getGeoDatabase(): GeoFire {
         return GeoFire(Cloud.getDatabase().child(GEO).child(NAME))
     }
-
     private val data: DatabaseReference? = null
 
     private fun toLocal(lugar: Lugar): Poi =
@@ -59,7 +57,6 @@ object Repo {
                         continuation.resume(Pair(null, e))
                     }
                 }
-
                 override fun onCancelled(err: DatabaseError) {
                     Log.e(tag, "list:onCancelled:$err")
                     continuation.resume(Pair(null, Exception(err.message)))

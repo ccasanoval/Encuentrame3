@@ -27,19 +27,19 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
                 _goto.postValue(GOTO.Finish)
             }
             else
-                android.util.Log.e(tag, "login error --------------------")
+                android.util.Log.e(TAG, "login error --------------------")
         }
     }
 
     fun login(email: String, pwd: String) {
         viewModelScope.launch {
             if(authService.login(email, pwd)) {
-                android.util.Log.e(tag, "login email & pass ok --------------------")
+                android.util.Log.e(TAG, "login email & pass ok --------------------")
                 _msg.postValue(Pair(R.string.login_ok, authService.getCurrentUser()?.secureName))
                 _goto.postValue(GOTO.Finish)
             }
             else {
-                android.util.Log.e(tag, "login error --------------------")
+                android.util.Log.e(TAG, "login error --------------------")
                 _msg.postValue(Pair(R.string.login_error, null))
             }
         }
@@ -48,12 +48,12 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
     fun addUser(email: String, pwd: String, verify: String) {
         viewModelScope.launch {
             if(authService.addUser(email, pwd, verify)) {
-                android.util.Log.e(tag, "addUser ok --------------------")
+                android.util.Log.e(TAG, "addUser ok --------------------")
                 _msg.postValue(Pair(R.string.signin_ok, authService.getCurrentUser()?.email))
                 _clear.postValue(true)
             }
             else {
-                android.util.Log.e(tag, "addUser error --------------------")
+                android.util.Log.e(TAG, "addUser error --------------------")
                 _msg.postValue(Pair(R.string.signin_error, null))
             }
         }
@@ -82,17 +82,17 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
     fun recover(email: String) {
         viewModelScope.launch {
             if(authService.recover(email)) {
-                android.util.Log.e(tag, "recover ok --------------------")
+                android.util.Log.e(TAG, "recover ok --------------------")
                 _msg.postValue(Pair(R.string.recover_ok, authService.getCurrentUser()?.email))
             }
             else {
-                android.util.Log.e(tag, "recover error --------------------")
+                android.util.Log.e(TAG, "recover error --------------------")
                 _msg.postValue(Pair(R.string.recover_error, null))
             }
         }
     }
 
     companion object {
-        private const val tag = "LoginVM"
+        private const val TAG = "LoginVM"
     }
 }

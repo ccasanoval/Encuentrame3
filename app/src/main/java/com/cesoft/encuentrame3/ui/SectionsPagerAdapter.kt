@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.cesoft.encuentrame3.R
 import com.cesoft.feature_alert.AlertFragment
-import com.cesoft.feature_poi.PoiFragment
+import com.cesoft.feature_poi.ui.PoiListFragment
 import com.cesoft.feature_route.RouteFragment
 
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
@@ -14,10 +14,10 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
 
     override fun getItem(position: Int): Fragment {
         return when(position) {
-            LUGARES -> PoiFragment.newInstance()
+            LUGARES -> PoiListFragment.newInstance()
             RUTAS -> RouteFragment.newInstance()
             AVISOS -> AlertFragment.newInstance()
-            else -> PoiFragment.newInstance()
+            else -> PoiListFragment.newInstance()
         }
     }
 

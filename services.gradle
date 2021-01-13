@@ -1,17 +1,18 @@
 ext.servicesConfig = {
     dependencies {
-// Google
+        // Google
         gmsImplementation platform('com.google.firebase:firebase-bom:26.1.0')
         gmsImplementation 'com.google.firebase:firebase-auth-ktx'
         gmsImplementation 'com.google.firebase:firebase-database-ktx'
         gmsImplementation 'com.google.firebase:firebase-storage-ktx'
         gmsImplementation 'com.firebase:geofire-java:3.0.0'
 
-// Huawei
+        // Huawei
         hmsImplementation 'com.huawei.hms:push:5.0.4.301'
         hmsImplementation 'com.huawei.hms:maps:5.0.5.301'
         hmsImplementation 'com.huawei.hms:location:5.0.4.300'
+
+        // Common
+        implementation 'org.greenrobot:eventbus:3.2.0'
     }
-
-
 }
