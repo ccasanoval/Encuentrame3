@@ -68,7 +68,7 @@ class AuthService(val context: Context) : AuthServiceContract {
     }
 
     //TODO: Mostrar reglas de Firebase para crear usuarios...(en caso de error...)
-    override suspend fun addUser(email: String, pwd: String): Boolean {
+    override suspend fun addUser(email: String, pwd: String, verify: String): Boolean {
         return suspendCoroutine { continuation ->
             val auth = FirebaseAuth.getInstance()
             auth.createUserWithEmailAndPassword(email, pwd)

@@ -1,1 +1,5 @@
-<resources></resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_google">Or login with Google</string>
+    <string name="login_error_google">Google account failed</string>
+</resources>

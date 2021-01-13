@@ -16,6 +16,8 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
     val goto: LiveData<GOTO> = _goto
     private val _msg = MutableLiveData<Pair<Int, String?>>()
     val msg: LiveData<Pair<Int, String?>> = _msg
+    private val _clear = MutableLiveData<Boolean>()
+    val clear: LiveData<Boolean> = _clear
 
     fun isLoggedIn() = authService.isLoggedIn()
     fun getIntent() = authService.getLoginIntent()
@@ -48,7 +50,7 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
             if(authService.addUser(email, pwd, verify)) {
                 android.util.Log.e(tag, "addUser ok --------------------")
                 _msg.postValue(Pair(R.string.signin_ok, authService.getCurrentUser()?.email))
-                //TODO: borrar campos
+                _clear.postValue(true)
             }
             else {
                 android.util.Log.e(tag, "addUser error --------------------")

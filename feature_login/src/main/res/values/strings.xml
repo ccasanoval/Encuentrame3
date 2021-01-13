@@ -6,10 +6,8 @@
     <string name="clave_confirmar">Repeat password</string>
 
     <string name="enter_lbl">Input login</string>
-    <string name="login_google">Or login with Google</string>
     <string name="login">Log in</string>
     <string name="login_error">Wrong user or password</string>
-    <string name="login_error_google">Google account failed</string>
     <string name="login_empty">User or password empty</string>
     <string name="login_ok">Welcome %s</string>
 

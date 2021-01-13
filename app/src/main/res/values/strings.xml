@@ -1,17 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE resources [
-    <!ENTITY voice_new_point "New point">
-    <!ENTITY voice_new_route "New route">
-    <!ENTITY voice_new_route2 "Start route">
-    <!ENTITY voice_new_alert "New alert">
-    <!ENTITY voice_start "Start">
-    <!ENTITY voice_save "Save">
-    <!ENTITY voice_cancel "Cancel">
-    <!ENTITY voice_stop_route "Stop route">
-    <!ENTITY voice_map "Map">
-    <!ENTITY voice_stop_listening "Stop listening">
-    ]>
-<!-- not supported anymore DOCTYPE resources [
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [<!ENTITY voice_new_point "New point"><!ENTITY voice_new_route "New route"><!ENTITY voice_new_route2 "Start route"><!ENTITY voice_new_alert "New alert"><!ENTITY voice_start "Start"><!ENTITY voice_save "Save"><!ENTITY voice_cancel "Cancel"><!ENTITY voice_stop_route "Stop route"><!ENTITY voice_map "Map"><!ENTITY voice_stop_listening "Stop listening">]><!-- not supported anymore DOCTYPE resources [
 	<!ENTITY % ents SYSTEM "./res/raw/voice_commands.ent">
 	%ents;
 	] -->
@@ -185,15 +172,8 @@
     <string name="voice_map">&voice_map;</string>
     <string name="voice_stop_listening">&voice_stop_listening;</string>
     <string name="voice_comands_all">
-		&voice_new_point;,
-        &voice_new_route;,
-        &voice_new_route2;,
-        &voice_new_alert;,
-        &voice_start;,
-        &voice_save;,
-        &voice_cancel;,
-        &voice_stop_route;,
-        &voice_map;,
-        &voice_stop_listening;.
+		&voice_new_point;, &voice_new_route;, &voice_new_route2;, &voice_new_alert;, &voice_start;, &voice_save;, &voice_cancel;, &voice_stop_route;, &voice_map;, &voice_stop_listening;.
 	</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

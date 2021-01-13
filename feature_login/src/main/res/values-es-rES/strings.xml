@@ -7,9 +7,7 @@
 
     <string name="enter_lbl">Introduce tu usuario</string>
     <string name="login">Iniciar sesión</string>
-    <string name="login_google">O usa tu cuenta Google</string>
     <string name="login_error">Usuario o contraseña incorrectas</string>
-    <string name="login_error_google">La cuenta de Google falló</string>
     <string name="login_empty">Usuario o contraseña vacías</string>
     <string name="login_ok">Bienvenido %s</string>
 

@@ -34,7 +34,7 @@ class LoginFragment : Fragment() {
     private lateinit var lblLoginServiceId: TextView
     private lateinit var txtEmail: EditText
     private lateinit var txtPassword: EditText
-    private lateinit var txtPassword2: TextView
+    private lateinit var txtPassword2: EditText
     private lateinit var txtVerifyCode: EditText
     private lateinit var txtPhone: EditText
     private lateinit var btnSend: Button
@@ -58,6 +58,9 @@ class LoginFragment : Fragment() {
             showWait(false)
             val msg = String.format(getString(pair.first), pair.second)
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+        })
+        vm.clear.observe(this, {
+            clearFields()
         })
 
         if(vm.isLoggedIn()) {
@@ -98,6 +101,12 @@ class LoginFragment : Fragment() {
         btnPrivacyPolicy.setOnClickListener {
             Util.showPrivacyPolicy(requireContext())
         }
+    }
+    private fun clearFields() {
+        txtEmail.text.clear()
+        txtPassword.text.clear()
+        txtPassword2.text.clear()
+        txtPhone.text.clear()
     }
 
     private fun showWait(on: Boolean) {

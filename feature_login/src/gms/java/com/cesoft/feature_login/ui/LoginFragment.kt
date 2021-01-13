@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment
 import com.cesoft.feature_login.R
 import com.cesoft.feature_login.Util
 import com.google.android.gms.common.SignInButton
-import com.google.android.material.textfield.TextInputLayout
 import org.koin.android.ext.android.inject
 
 //NOTE: Remember to change package_name from encuentrame3 to feature_login after downloading google-services.json
@@ -42,7 +41,7 @@ class LoginFragment : Fragment() {
     private lateinit var txtPassword: EditText
     private lateinit var txtPassword2: TextView
     private lateinit var btnSend: Button
-    private lateinit var btnLoginServiceId: Button
+    private lateinit var btnLoginServiceId: SignInButton
     private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,10 +74,10 @@ class LoginFragment : Fragment() {
         val rootView: View = inflater.inflate(R.layout.fragment_login, container, false)
         iniFields(rootView)
         when (sectionNumber) {
-            ENTER -> login(rootView)
-            SIGNIN -> signin(rootView)
-            RECOVER -> recover(rootView)
-            else -> login(rootView)
+            ENTER -> login()
+            SIGNIN -> signIn()
+            RECOVER -> recover()
+            else -> login()
         }
         return rootView
     }
@@ -104,14 +103,8 @@ class LoginFragment : Fragment() {
     }
 
     /// Login
-    private fun login(rootView: View) {
-        val lblTitulo = rootView.findViewById<TextView>(R.id.lblTitulo)
-        val txtPassword = rootView.findViewById<EditText>(R.id.txtPassword)
-        val txtEmail = rootView.findViewById<EditText>(R.id.txtEmail)
-        val btnSend = rootView.findViewById<Button>(R.id.btnSend)
-        val btnGoogle: SignInButton = rootView.findViewById(R.id.btnGoogle)
-        val lblPassword2: TextInputLayout = rootView.findViewById(R.id.lblPassword2)
-        lblPassword2.visibility = View.GONE
+    private fun login() {
+        txtPassword2.visibility = View.GONE
         lblTitulo.text = getString(R.string.enter_lbl)
 
         /// Email account login
@@ -136,22 +129,15 @@ class LoginFragment : Fragment() {
         }
 
         /// Google account login
-        btnGoogle.setOnClickListener {
+        btnLoginServiceId.setOnClickListener {
             resultLauncher.launch(vm.getIntent())
         }
     }
 
     /// Sign In
-    private fun signin(rootView: View) {
-        val lblTitulo = rootView.findViewById<TextView>(R.id.lblTitulo)
-        val txtPassword = rootView.findViewById<EditText>(R.id.txtPassword)
-        val txtPassword2 = rootView.findViewById<EditText>(R.id.txtPassword2)
-        val txtEmail = rootView.findViewById<EditText>(R.id.txtEmail)
-        val btnSend = rootView.findViewById<Button>(R.id.btnSend)
-        val btnGoogle = rootView.findViewById<SignInButton>(R.id.btnGoogle)
-        val lblLoginGoogle = rootView.findViewById<TextView>(R.id.lblLoginGoogle)
-        btnGoogle.visibility = View.GONE
-        lblLoginGoogle.visibility = View.GONE
+    private fun signIn() {
+        btnLoginServiceId.visibility = View.GONE
+        lblLoginServiceId.visibility = View.GONE
         lblTitulo.text = getString(R.string.signin_lbl)
         btnSend.setText(R.string.signin_btn)
         btnSend.setOnClickListener {
@@ -169,18 +155,11 @@ class LoginFragment : Fragment() {
     }
 
     /// Recover
-    private fun recover(rootView: View) {
-        val lblTitulo = rootView.findViewById<TextView>(R.id.lblTitulo)
-        val txtEmail = rootView.findViewById<EditText>(R.id.txtEmail)
-        val btnSend = rootView.findViewById<Button>(R.id.btnSend)
-        val btnGoogle = rootView.findViewById<SignInButton>(R.id.btnGoogle)
-        val lblPassword = rootView.findViewById<TextInputLayout>(R.id.lblPassword)
-        val lblPassword2 = rootView.findViewById<TextInputLayout>(R.id.lblPassword2)
-        val lblLoginGoogle = rootView.findViewById<TextView>(R.id.lblLoginGoogle)
-        btnGoogle.visibility = View.GONE
-        lblLoginGoogle.visibility = View.GONE
-        lblPassword.visibility = View.GONE
-        lblPassword2.visibility = View.GONE
+    private fun recover() {
+        btnLoginServiceId.visibility = View.GONE
+        lblLoginServiceId.visibility = View.GONE
+        txtPassword.visibility = View.GONE
+        txtPassword2.visibility = View.GONE
         lblTitulo.text = getString(R.string.recover_lbl)
         btnSend.setText(R.string.recover_btn)
         btnSend.setOnClickListener {
@@ -195,7 +174,7 @@ class LoginFragment : Fragment() {
 
 
     companion object {
-        private const val tag = "LoginFrg"
+        //private const val tag = "LoginFrg"
         private const val ARG_SECTION_NUMBER = "section_number"
 
         const val MAX_PAGES = 3
@@ -212,5 +191,4 @@ class LoginFragment : Fragment() {
             return fragment
         }
     }
-
 }
