@@ -4,7 +4,7 @@ ext.flavorConfig = {
     productFlavors {
         gms {
             dimension 'Servicios'
-            //applicationIdSuffix '.gms'//TODO: cuando subas a Google Play comenta esta linea
+            //applicationIdSuffix '.gms'//TODO: how to use suffixes with services.json ???
             versionNameSuffix "-gms"
         }
         hms {

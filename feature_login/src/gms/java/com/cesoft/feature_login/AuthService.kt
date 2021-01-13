@@ -5,7 +5,6 @@ import android.content.Intent
 import com.cesoft.feature_login.model.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -27,7 +26,7 @@ class AuthService(val context: Context) : AuthServiceContract {
             .requestIdToken(context.getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        val signInClient: GoogleSignInClient = GoogleSignIn.getClient(context, gso)
+        val signInClient = GoogleSignIn.getClient(context, gso)
         return signInClient.signInIntent
     }
 
@@ -62,7 +61,7 @@ class AuthService(val context: Context) : AuthServiceContract {
         }
     }
 
-    override fun getCurrentUser(): User? {
+    override fun getCurrentUser(): User {
         val auth = FirebaseAuth.getInstance()
         return User(auth.currentUser?.uid, auth.currentUser?.displayName, auth.currentUser?.email, auth.currentUser?.phoneNumber, auth.currentUser?.photoUrl.toString())
     }

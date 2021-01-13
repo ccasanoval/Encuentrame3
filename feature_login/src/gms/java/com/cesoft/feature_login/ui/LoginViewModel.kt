@@ -23,7 +23,7 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
         viewModelScope.launch {
             if(authService.login(data)) {
                 android.util.Log.e(tag, "login intent ok --------------------")
-                _msg.postValue(Pair(R.string.login_ok, authService.getCurrentUser()?.name))
+                _msg.postValue(Pair(R.string.login_ok, authService.getCurrentUser().name))
                 _goto.postValue(GOTO.Finish)
             }
             else {
@@ -36,7 +36,7 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
         viewModelScope.launch {
             if(authService.login(email, pwd)) {
                 android.util.Log.e(tag, "login email & pass ok --------------------")
-                _msg.postValue(Pair(R.string.login_ok, authService.getCurrentUser()?.secureName))
+                _msg.postValue(Pair(R.string.login_ok, authService.getCurrentUser().secureName))
                 _goto.postValue(GOTO.Finish)
             }
             else {
@@ -50,7 +50,7 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
         viewModelScope.launch {
             if(authService.addUser(email, pwd)) {
                 android.util.Log.e(tag, "addUser ok --------------------")
-                _msg.postValue(Pair(R.string.signin_ok, authService.getCurrentUser()?.email))
+                _msg.postValue(Pair(R.string.signin_ok, authService.getCurrentUser().email))
             }
             else {
                 android.util.Log.e(tag, "addUser error --------------------")
@@ -63,7 +63,7 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
         viewModelScope.launch {
             if(authService.recover(email)) {
                 android.util.Log.e(tag, "recover ok --------------------")
-                _msg.postValue(Pair(R.string.recover_ok, authService.getCurrentUser()?.email))
+                _msg.postValue(Pair(R.string.recover_ok, authService.getCurrentUser().email))
             }
             else {
                 android.util.Log.e(tag, "recover error --------------------")

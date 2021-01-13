@@ -6,8 +6,8 @@ data class Poi(
     val name: String,
     val description: String,
     val timestamp: Long,
-    val latitude: Float,
-    val longitude: Float
+    val latitude: Double,
+    val longitude: Double
 ) {
 
 }

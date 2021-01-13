@@ -50,18 +50,21 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    //registerForActivityResult
+    // registerForActivityResult
     implementation 'androidx.fragment:fragment-ktx:1.3.0-rc01'
 
+    // DI Koin
+    implementation "org.koin:koin-androidx-scope:2.2.2"
+    implementation "org.koin:koin-androidx-viewmodel:2.2.2"
+    implementation "org.koin:koin-androidx-fragment:2.1.6"
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
+
     // Google
-    implementation platform('com.google.firebase:firebase-bom:26.1.0')
-    implementation 'com.google.firebase:firebase-auth-ktx'
+    gmsImplementation platform('com.google.firebase:firebase-bom:26.1.0')
+    gmsImplementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
-    //gmsImplementation 'com.google.firebase:firebase-core:18.0.0'
-    //gmsImplementation 'com.google.firebase:firebase-auth:20.0.1'
-    //gmsImplementation 'com.google.firebase:firebase-database:19.6.0'
-    //gmsImplementation 'com.google.firebase:firebase-storage:19.2.1'
-    //gmsImplementation 'com.firebase:geofire-java:3.0.0'
 
     // Huawei
     //hmsImplementation 'com.huawei.agconnect:agconnect-core:1.4.1.300'
@@ -73,13 +76,6 @@ dependencies {
 //    hmsImplementation 'com.huawei.hms:maps:4.0.1.301'
 //    hmsImplementation 'com.huawei.hms:location:4.0.3.303'
 
-    //DI Koin
-    implementation "org.koin:koin-androidx-scope:2.2.2"
-    implementation "org.koin:koin-androidx-viewmodel:2.2.2"
-    implementation "org.koin:koin-androidx-fragment:2.1.6"
-
-    //Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
 }
 
 if(getGradle().getStartParameter().getTaskRequests().toString().contains("Hms")) {
