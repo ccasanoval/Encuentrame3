@@ -1,7 +1,7 @@
 package com.cesoft.feature_poi.dummy
 
-import java.util.ArrayList
-import java.util.HashMap
+import com.cesoft.feature_poi.model.Poi
+import java.util.*
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -14,12 +14,12 @@ object DummyContent {
     /**
      * An array of sample (dummy) items.
      */
-    val ITEMS: MutableList<DummyItem> = ArrayList()
+    val ITEMS: MutableList<Poi> = ArrayList()
 
     /**
      * A map of sample (dummy) items, by ID.
      */
-    val ITEM_MAP: MutableMap<String, DummyItem> = HashMap()
+    val ITEM_MAP: MutableMap<String, Poi> = HashMap()
 
     private val COUNT = 25
 
@@ -30,28 +30,22 @@ object DummyContent {
         }
     }
 
-    private fun addItem(item: DummyItem) {
+    private fun addItem(item: Poi) {
         ITEMS.add(item)
         ITEM_MAP.put(item.id, item)
     }
 
-    private fun createDummyItem(position: Int): DummyItem {
-        return DummyItem(position.toString(), "Item " + position, makeDetails(position))
+    private fun createDummyItem(position: Int): Poi {
+        return Poi(position.toString(), "POI $position", makeDetails(position), Date().time, 0F, 0F)
     }
 
     private fun makeDetails(position: Int): String {
         val builder = StringBuilder()
         builder.append("Details about Item: ").append(position)
-        for (i in 0..position - 1) {
+        for (i in 0 until position) {
             builder.append("\nMore details information here.")
         }
         return builder.toString()
     }
 
-    /**
-     * A dummy item representing a piece of content.
-     */
-    data class DummyItem(val id: String, val content: String, val details: String) {
-        override fun toString(): String = content
-    }
 }

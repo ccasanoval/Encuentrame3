@@ -1,3 +1,4 @@
+include ':feature_geocommon'
 include ':feature_login'
 include ':feature_alert'
 include ':feature_route'

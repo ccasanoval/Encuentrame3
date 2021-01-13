@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         setupToolbar()
         setupDrawerMenu()
         setupFloatingButton()
-        setupTabs()
+        //setupTabs()
         iniLivedata()
         checkLogin()
     }
@@ -60,10 +60,8 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_feature_poi/*, R.id.nav_gallery, R.id.nav_slideshow*/),
+            setOf(R.id.nav_main),
             drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -104,13 +102,13 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
     }
-    private fun setupTabs() {
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = findViewById(R.id.view_pager)
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.tabs)
-        tabs.setupWithViewPager(viewPager)
-    }
+//    private fun setupTabs() {
+//        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+//        val viewPager: ViewPager = findViewById(R.id.view_pager)
+//        viewPager.adapter = sectionsPagerAdapter
+//        val tabs: TabLayout = findViewById(R.id.tabs)
+//        tabs.setupWithViewPager(viewPager)
+//    }
     private fun iniLivedata() {
         vm.goto.observe(this, { goto: MainViewModel.GOTO ->
             drawerLayout.closeDrawers()

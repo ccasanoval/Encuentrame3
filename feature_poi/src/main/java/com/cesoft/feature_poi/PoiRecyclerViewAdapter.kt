@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.cesoft.feature_geocommon.Util
+import com.cesoft.feature_poi.model.Poi
 
-import com.cesoft.feature_poi.dummy.DummyContent.DummyItem
 
-/**
- * [RecyclerView.Adapter] that can display a [DummyItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class PoiRecyclerViewAdapter(
-    private val values: List<DummyItem>
+    private val values: List<Poi>
 ) : RecyclerView.Adapter<PoiRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,18 +21,14 @@ class PoiRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        holder.name.text = item.name
+        holder.date.text = Util.getDate(item.timestamp, "dd/MM/yyyy hh:mm")
     }
 
     override fun getItemCount(): Int = values.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val idView: TextView = view.findViewById(R.id.item_number)
-        val contentView: TextView = view.findViewById(R.id.content)
-
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
-        }
+        val name: TextView = view.findViewById(R.id.txtName)
+        val date: TextView = view.findViewById(R.id.txtDate)
     }
 }
