@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="edit">Edit</string>
+    <string name="search">Search</string>
     <string name="show_map">Show map</string>
     <string name="name">Name</string>
     <string name="description">Description</string>
     <string name="refresh_position">Refresh location</string>
+
+    <string name="edit">Edit</string>
+    <string name="edit_poi">Edit POI</string>
+    <string name="edit_alert">Edit Alert</string>
+    <string name="edit_route">Edit Route</string>
+
+    <string name="addnew">New</string>
+    <string name="new_poi">New POI</string>
+    <string name="new_route">New Route</string>
+    <string name="new_alert">New Alert</string>
+
 
     <string name="lat_lon" translatable="false">Lat/Lon</string>
 </resources>

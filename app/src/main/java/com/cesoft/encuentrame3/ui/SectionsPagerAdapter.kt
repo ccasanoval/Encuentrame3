@@ -14,19 +14,19 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
 
     override fun getItem(position: Int): Fragment {
         return when(position) {
-            LUGARES -> PoiListFragment.newInstance()
-            RUTAS -> RouteFragment.newInstance()
-            AVISOS -> AlertFragment.newInstance()
+            POI -> PoiListFragment.newInstance()
+            ROUTE -> RouteFragment.newInstance()
+            ALERT -> AlertFragment.newInstance()
             else -> PoiListFragment.newInstance()
         }
     }
 
     override fun getPageTitle(position: Int): CharSequence {
         return when(position) {
-            LUGARES -> context.resources.getString(R.string.lugares)
-            RUTAS -> context.resources.getString(R.string.rutas)
-            AVISOS -> context.resources.getString(R.string.avisos)
-            else -> context.resources.getString(R.string.lugares)
+            POI -> context.resources.getString(R.string.pois)
+            ROUTE -> context.resources.getString(R.string.routes)
+            ALERT -> context.resources.getString(R.string.alert)
+            else -> context.resources.getString(R.string.pois)
         }
     }
 
@@ -36,8 +36,8 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
 
     companion object {
         const val MAX_PAGES = 3
-        const val LUGARES = 0
-        const val RUTAS = 1
-        const val AVISOS = 2
+        const val POI = 0
+        const val ROUTE = 1
+        const val ALERT = 2
     }
 }

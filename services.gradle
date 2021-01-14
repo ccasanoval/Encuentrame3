@@ -17,6 +17,6 @@ ext.servicesConfig = {
         hmsImplementation 'com.huawei.hms:location:5.0.4.300'
 
         // Common
-        implementation 'org.greenrobot:eventbus:3.2.0'
+        //implementation 'org.greenrobot:eventbus:3.2.0'
     }
 }

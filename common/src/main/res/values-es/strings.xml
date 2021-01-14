@@ -9,18 +9,12 @@
 	<!ENTITY voice_cancel "Cancelar">
 	<!ENTITY voice_stop_route "Parar ruta">
 	<!ENTITY voice_map "Mapa">
-	<!ENTITY voice_stop_listening "Para de escuchar">
-	]>
+	<!ENTITY voice_stop_listening "Para de escuchar">]>
 <!-- not supported anymore DOCTYPE resources [
 	<!ENTITY % ents SYSTEM "./res/raw/voice_commands.ent">
 	%ents;
 	] -->
 <resources>
-	<!-- App -->
-
-
-
-
 	<string name="app_name">Encuentrame!</string>
 	<string name="app_desc">\nAplicación para la gestión de lugares de interés, con avisos por geo-posicionamiento y registro de rutas. Podrás administrar  tus geo-datos fácilmente, pues serán almacenados en la nube.\n\n</string>
 	<string name="app_lice_tit">Licencia:</string>
@@ -63,27 +57,15 @@
 	<string name="geotracking_service_stoping">Deteniendo servicio de geotracking…</string>
 
 	<!-- Items -->
-	<string name="lugares">Lugares</string>
-	<string name="rutas">Rutas</string>
-	<string name="avisos">Avisos</string>
-
-	<!-- Editar -->
-	<string name="editar">Editar</string>
-	<string name="editar_lugar">Editar Lugar</string>
-	<string name="editar_aviso">Editar Aviso</string>
-	<string name="editar_ruta">Editar Ruta</string>
+	<string name="pois">Lugares</string>
+	<string name="routes">Rutas</string>
+	<string name="alerts">Avisos</string>
 
 	<!-- Fecha -->
 	<string name="fecha_desde">Del</string>
 	<string name="fecha_hasta">al</string>
 	<string name="fin">Fin: </string>
 	<string name="ini">Ini: </string>
-
-	<!-- Nuevo -->
-	<string name="nuevo">Nuevo</string>
-	<string name="nuevo_lugar">Nuevo Lugar</string>
-	<string name="nuevo_aviso">Nuevo Aviso</string>
-	<string name="nueva_ruta">Nueva Ruta</string>
 
 	<!-- Title -->
 	<string name="title_activity_act_main">Encuentrame!</string>

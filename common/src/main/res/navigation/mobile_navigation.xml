@@ -9,9 +9,9 @@
         android:id="@+id/nav_main"
         android:name="com.cesoft.encuentrame3.ui.MainFragment"
         android:label="@string/app_name" >
-        <action
+        <!--action
             android:id="@+id/action_nav_main_to_nav_poi_list"
-            app:destination="@id/nav_poi_list" />
+            app:destination="@id/nav_poi_list" /-->
         <action
             android:id="@+id/action_nav_main_to_nav_poi_item"
             app:destination="@id/nav_poi_item" />
@@ -20,7 +20,7 @@
             app:destination="@id/nav_poi_maps" />
     </fragment>
 
-    <fragment
+    <!-- fragment
         android:id="@+id/nav_poi_list"
         android:name="com.cesoft.feature_poi.ui.PoiListFragment"
         android:label="@string/app_name"
@@ -28,7 +28,7 @@
         <action
             android:id="@+id/action_nav_poi_list_to_nav_poi_item"
             app:destination="@id/nav_poi_item" />
-    </fragment>
+    </fragment -->
 
     <fragment
         android:id="@+id/nav_poi_item"

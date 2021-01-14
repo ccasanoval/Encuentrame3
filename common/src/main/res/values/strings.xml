@@ -15,7 +15,6 @@
 	%ents;
 	] -->
 <resources>
-
     <string name="app_name">Find me!</string>
     <string name="app_desc">\nApp for the management of personal points of interest. It counts with geo-position alerts and geo-tracking. As the data is saved to the cloud, you can manage your geo-data easily.\n\n</string>
     <string name="app_lice_tit">Licence</string>
@@ -58,27 +57,15 @@
     <string name="geotracking_service_stoping">Stoping tracking service…</string>
 
     <!-- Items -->
-    <string name="lugares">Points</string>
-    <string name="rutas">Routes</string>
-    <string name="avisos">Alerts</string>
-
-    <!-- Editar -->
-    <string name="editar">Edit</string>
-    <string name="editar_aviso">Edit Alert</string>
-    <string name="editar_lugar">Edit Point</string>
-    <string name="editar_ruta">Edit Route</string>
+    <string name="pois">POIs</string>
+    <string name="routes">Routes</string>
+    <string name="alert">Alerts</string>
 
     <!-- Fecha -->
     <string name="fecha_desde">From</string>
     <string name="fecha_hasta">to</string>
     <string name="fin">End: </string>
     <string name="ini">Ini: </string>
-
-    <!-- Nuevo -->
-    <string name="nuevo">New</string>
-    <string name="nueva_ruta">New Route</string>
-    <string name="nuevo_aviso">New Alert</string>
-    <string name="nuevo_lugar">New Point</string>
 
     <!-- Title -->
     <string name="title_activity_act_aviso">Alert</string>

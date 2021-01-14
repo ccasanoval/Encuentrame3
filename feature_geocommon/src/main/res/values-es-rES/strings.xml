@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="edit">Editar</string>
+    <string name="search">Buscar</string>
     <string name="show_map">Mostrar map</string>
     <string name="name">Nombre</string>
     <string name="description">Descripción</string>
     <string name="refresh_position">Actualizar posición</string>
+
+    <string name="edit">Editar</string>
+    <string name="edit_poi">Editar Lugar</string>
+    <string name="edit_alert">Editar Aviso</string>
+    <string name="edit_route">Editar Ruta</string>
+
+    <string name="addnew">Nuevo</string>
+    <string name="new_poi">Nuevo Punto</string>
+    <string name="new_route">Nueva Ruta</string>
+    <string name="new_alert">Nuevo Aviso</string>
 
 </resources>

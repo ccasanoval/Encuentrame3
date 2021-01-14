@@ -46,9 +46,6 @@ class PoiFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-
         vm = ViewModelProvider(this).get(PoiViewModel::class.java)
         vm.poi = arguments?.get(ARG_PARAM) as Poi
         Log.e(TAG, "------------poi=${vm.poi}")
@@ -68,7 +65,6 @@ class PoiFragment : Fragment() {
 
         }
 
-        //val fab = view.findViewById<FloatingActionButton>(R.id.fabA)
         val fabBuscar = view.findViewById<FloatingActionButton>(R.id.fabSearch)
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
