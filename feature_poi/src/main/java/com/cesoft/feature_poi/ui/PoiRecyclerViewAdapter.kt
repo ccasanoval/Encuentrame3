@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import com.cesoft.feature_geocommon.Util
 import com.cesoft.feature_poi.R
 import com.cesoft.feature_poi.model.Poi
-import org.greenrobot.eventbus.EventBus
 
 
 class PoiRecyclerViewAdapter(
@@ -26,23 +27,26 @@ class PoiRecyclerViewAdapter(
         val item = values[position]
         holder.name.text = item.name
         holder.date.text = Util.getDate(item.timestamp)
-        holder.btnEdit.setOnClickListener {
-            EventBus.getDefault().post(EditEvent(position))
-        }
-        holder.btnMap.setOnClickListener {
-            EventBus.getDefault().post(MapEvent(position))
-        }
+        val bundle = bundleOf(Poi::class.java.simpleName to item)
+        holder.btnEdit.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_nav_main_to_nav_poi_item, bundle))
+        holder.btnMap.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_nav_main_to_nav_poi_maps, bundle))
+            //Navigation.createNavigateOnClickListener(R.id.action_nav_poi_list_to_nav_poi_item, bundle))
+//        holder.btnMap.setOnClickListener {
+//            EventBus.getDefault().post(MapEvent(item))
+//        }
     }
 
     override fun getItemCount(): Int = values.size
 
-    class EditEvent(val position: Int)
-    class MapEvent(val position: Int)
+    class EditEvent(val poi: Poi)
+    class MapEvent(val poi: Poi)
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name = view.findViewById<TextView>(R.id.txtName)
-        val date = view.findViewById<TextView>(R.id.txtDate)
-        val btnEdit = view.findViewById<ImageButton>(R.id.btnEdit)
-        val btnMap = view.findViewById<ImageButton>(R.id.btnMap)
+        val name: TextView = view.findViewById(R.id.txtName)
+        val date: TextView = view.findViewById(R.id.txtDate)
+        val btnEdit: ImageButton = view.findViewById(R.id.btnEdit)
+        val btnMap: ImageButton = view.findViewById(R.id.btnMap)
     }
 }

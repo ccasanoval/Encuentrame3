@@ -2,4 +2,8 @@
 <resources>
     <string name="edit">Editar</string>
     <string name="show_map">Mostrar map</string>
+    <string name="name">Nombre</string>
+    <string name="description">Descripción</string>
+    <string name="refresh_position">Actualizar posición</string>
+
 </resources>

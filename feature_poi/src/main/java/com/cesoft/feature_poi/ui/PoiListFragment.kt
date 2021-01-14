@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -44,23 +45,19 @@ class PoiListFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        EventBus.getDefault().register(this)
+        //EventBus.getDefault().register(this)
     }
 
     override fun onStop() {
         super.onStop()
-        EventBus.getDefault().unregister(this)
+        //EventBus.getDefault().unregister(this)
     }
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: PoiRecyclerViewAdapter.EditEvent?) {
-        Log.e(TAG, "EditEvent=$event")
-        findNavController().navigate(R.id.nav_poi_item)
-    }
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: PoiRecyclerViewAdapter.MapEvent?) {
-        Log.e(TAG, "MapEvent=$event")
-        findNavController().navigate(R.id.nav_poi_item)
-    }
+
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    fun onMessageEvent(event: PoiRecyclerViewAdapter.MapEvent) {
+//        Log.e(TAG, "MapEvent=${event.poi}")
+//        findNavController().navigate(R.id.nav_poi_item)
+//    }
 
     companion object {
         private const val TAG = "PoiFragment"
