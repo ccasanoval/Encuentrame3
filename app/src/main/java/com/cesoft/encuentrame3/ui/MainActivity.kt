@@ -21,9 +21,7 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.cesoft.encuentrame3.R
 import com.cesoft.feature_login.ui.LoginActivity
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
@@ -37,8 +35,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setupToolbar()
         setupDrawerMenu()
-        setupFloatingButton()
-        //setupTabs()
         iniLivedata()
         checkLogin()
     }
@@ -88,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
     }
-    private fun setupFloatingButton() {
+//    private fun setupFloatingButton() {
 //        val fab: FloatingActionButton = findViewById(R.id.fab)
 //        fab.setOnClickListener { view ->
 //            Snackbar
@@ -96,7 +92,7 @@ class MainActivity : AppCompatActivity() {
 //                .setAction(  "Action",  null)
 //                .show()
 //        }
-    }
+//    }
 
     private fun iniLivedata() {
         vm.goto.observe(this, { goto: MainViewModel.GOTO ->

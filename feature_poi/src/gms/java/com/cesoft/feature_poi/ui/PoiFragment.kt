@@ -2,10 +2,7 @@ package com.cesoft.feature_poi.ui
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ProgressBar
@@ -40,6 +37,7 @@ class PoiFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_poi, container, false)
     }
 
@@ -94,9 +92,16 @@ class PoiFragment : Fragment() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.poi, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
+                if(true/*sucio=false*/)
+                    return super.onOptionsItemSelected(item)
                 android.util.Log.e(TAG, "onOptionsItemSelected HOME ------------------------------")
                 return true
             }

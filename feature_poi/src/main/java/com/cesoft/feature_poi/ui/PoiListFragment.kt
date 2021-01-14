@@ -38,6 +38,7 @@ class PoiListFragment : Fragment() {
         vm.list()
     }
 
+
 //    override fun onStart() {
 //        super.onStart()
 //        //EventBus.getDefault().register(this)

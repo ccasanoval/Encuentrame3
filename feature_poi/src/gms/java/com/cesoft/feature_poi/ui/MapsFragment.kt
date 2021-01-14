@@ -1,9 +1,7 @@
 package com.cesoft.feature_poi.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.cesoft.feature_poi.R
 import com.cesoft.feature_poi.Util
@@ -23,14 +21,12 @@ class MapsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_maps, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-            //requireActivity().setTitle(R.string.pois)
-            //requireActivity().actionBar?.title = getString(R.string.pois)
-
         poi = arguments?.get(ARG_PARAM) as Poi
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync { map -> onMapReady(map) }
@@ -61,6 +57,12 @@ class MapsFragment : Fragment() {
             map.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
             map.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.map, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     companion object {
