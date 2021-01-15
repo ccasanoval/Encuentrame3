@@ -65,9 +65,9 @@ class MainActivity : AppCompatActivity() {
         val userName = view.getHeaderView(0).findViewById<TextView>(R.id.userName)
         val userEmail= view.getHeaderView(0).findViewById<TextView>(R.id.userEmail)
         val userImage= view.getHeaderView(0).findViewById<ImageView>(R.id.userImage)
-        userName?.text = user.secureName
-        userEmail?.text = user.email
-        if( ! user.image.isNullOrBlank()) {
+        userName?.text = user?.secureName
+        userEmail?.text = user?.email
+        if( ! user?.image.isNullOrBlank()) {
             val listener = object: CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     userImage.setImageBitmap(resource)
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
             }
             Glide.with(this)
                 .asBitmap()
-                .load(user.image)
+                .load(user?.image)
                 .into(listener)
         }
     }

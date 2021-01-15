@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="horizontal"
+	android:baselineAligned="false"
+	android:paddingBottom="@dimen/activity_vertical_margin"
+	android:paddingLeft="@dimen/activity_horizontal_margin"
+	android:paddingRight="@dimen/activity_horizontal_margin"
+	android:paddingTop="@dimen/activity_vertical_margin"
+	app:layout_behavior="@string/appbar_scrolling_view_behavior"
+	tools:context="com.cesoft.feature_poi.ui.PoiFragment"
+	tools:showIn="@layout/fragment_poi">
+
+	<!-- *************************************************************************************** -->
+	<RelativeLayout
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1">
+
+		<EditText
+			android:id="@+id/txtName"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:ems="10"
+			android:hint="@string/name"
+			android:maxLines="1"
+			android:inputType="textCapWords"
+			android:importantForAutofill="no"
+			android:layout_alignParentStart="true"
+			android:layout_alignParentEnd="true"
+			android:layout_alignParentTop="true" />
+
+		<EditText
+			android:id="@+id/txtDescription"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/description"
+			android:ems="10"
+			android:inputType="textMultiLine|textCapSentences"
+			android:maxLines="3"
+			android:importantForAutofill="no"
+			android:layout_below="@+id/txtName"
+			android:layout_alignParentEnd="true"
+			android:layout_alignParentStart="true"/>
+
+	<!-- DATE CREATED and MODIFIED ? -->
+
+	<LinearLayout
+		android:id="@+id/layPosicion"
+		android:layout_below="@+id/txtDescription"
+		android:orientation="horizontal"
+		android:layout_centerHorizontal="true"
+		android:layout_centerVertical="true"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="5dp">
+
+		<TextView
+			android:id="@+id/lblPosition_"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:text="@string/lat_lon"
+			android:layout_marginEnd="8dp"
+			android:layout_gravity="center_vertical"/>
+		<TextView
+			android:id="@+id/lblPosition"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:layout_marginEnd="8dp"
+			android:textIsSelectable="true"
+			android:layout_gravity="center_vertical"/>
+		<ImageButton
+			android:id="@+id/btnActPos"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="2dp"
+			android:layout_gravity="center_vertical"
+			android:contentDescription="@string/refresh_position"
+			android:src="@android:drawable/ic_menu_mylocation"
+			style="@style/btnStyle"/>
+	</LinearLayout>
+	</RelativeLayout>
+	<!-- *************************************************************************************** -->
+
+	<!-- *************************************************************************************** -->
+	<fragment
+		tools:context=".ui.PoiFragment"
+		android:name="com.huawei.hms.maps.SupportMapFragment"
+		android:id="@+id/map"
+		android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+	<!-- *************************************************************************************** -->
+</LinearLayout>

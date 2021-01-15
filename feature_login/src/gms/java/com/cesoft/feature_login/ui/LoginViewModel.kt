@@ -27,7 +27,7 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
                 _goto.postValue(GOTO.Finish)
             }
             else {
-                android.util.Log.e(TAG, "login error --------------------")
+                android.util.Log.e(TAG, "login(data) error --------------------")
                 _msg.postValue(Pair(R.string.login_error, null))
             }
         }
@@ -40,7 +40,7 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
                 _goto.postValue(GOTO.Finish)
             }
             else {
-                android.util.Log.e(TAG, "login error --------------------")
+                android.util.Log.e(TAG, "login(email,pwd) error --------------------")
                 _msg.postValue(Pair(R.string.login_error, null))
             }
         }

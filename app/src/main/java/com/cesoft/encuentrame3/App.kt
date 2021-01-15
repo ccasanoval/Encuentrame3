@@ -9,6 +9,11 @@ import org.koin.core.context.startKoin
 //Navigation
 //https://medium.com/swlh/another-navigation-in-multi-module-architecture-1d4945c1fed0
 
+//Cloud DB:
+//https://github.com/SerkanMUTLU/Database-operation-on-CloudDB
+//https://medium.com/huawei-developers/what-is-cloud-db-3059cef7be19
+//https://medium.com/huawei-developers/hello-everyone-95f4624480e6
+
 //TODO:
 // + guardar fecha de ultima entrada a la app en bbdd -> para poder eliminar datos de usuarios sin uso
 //   (solo tenemos fecha entrada usuario de usuario y eliminar sus datos es mas complejo: podrias hacer app para eso)

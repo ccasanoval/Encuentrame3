@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cesoft.feature_poi.Repo
+import com.cesoft.feature_poi.repo.Repo
 import com.cesoft.feature_poi.model.Poi
 import kotlinx.coroutines.launch
 

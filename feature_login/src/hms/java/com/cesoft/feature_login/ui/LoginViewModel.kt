@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cesoft.feature_login.AuthService
 import com.cesoft.feature_login.R
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val authService: AuthService): ViewModel() {
@@ -23,23 +22,26 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
     fun getIntent() = authService.getLoginIntent()
     fun login(data: Intent) {
         viewModelScope.launch {
-            if(authService.login(data)) {
+            val res = authService.login(data)
+            if(res.isOk) {
+                android.util.Log.e(TAG, "login(data) usr --------------------"+res.user)
                 _goto.postValue(GOTO.Finish)
             }
             else
-                android.util.Log.e(TAG, "login error --------------------")
+                android.util.Log.e(TAG, "login(data) error --------------------("+res.exception+")")
         }
     }
 
     fun login(email: String, pwd: String) {
         viewModelScope.launch {
-            if(authService.login(email, pwd)) {
-                android.util.Log.e(TAG, "login email & pass ok --------------------")
-                _msg.postValue(Pair(R.string.login_ok, authService.getCurrentUser()?.secureName))
+            val res = authService.login(email, pwd)
+            if(res.isOk) {
+                android.util.Log.e(TAG, "login email & pass ok --------------------"+res.user)
+                _msg.postValue(Pair(R.string.login_ok,res.user?.secureName))
                 _goto.postValue(GOTO.Finish)
             }
             else {
-                android.util.Log.e(TAG, "login error --------------------")
+                android.util.Log.e(TAG, "login(email,pwd) error --------------------"+res.exception)
                 _msg.postValue(Pair(R.string.login_error, null))
             }
         }
@@ -47,13 +49,14 @@ class LoginViewModel(private val authService: AuthService): ViewModel() {
 
     fun addUser(email: String, pwd: String, verify: String) {
         viewModelScope.launch {
-            if(authService.addUser(email, pwd, verify)) {
-                android.util.Log.e(TAG, "addUser ok --------------------")
-                _msg.postValue(Pair(R.string.signin_ok, authService.getCurrentUser()?.email))
+            val res = authService.addUser(email, pwd, verify)
+            if(res.isOk) {
+                android.util.Log.e(TAG, "addUser ok --------------------"+res.user)
+                _msg.postValue(Pair(R.string.signin_ok, res.user?.email))
                 _clear.postValue(true)
             }
             else {
-                android.util.Log.e(TAG, "addUser error --------------------")
+                android.util.Log.e(TAG, "addUser error --------------------"+res.exception)
                 _msg.postValue(Pair(R.string.signin_error, null))
             }
         }

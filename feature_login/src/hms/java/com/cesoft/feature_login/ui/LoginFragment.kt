@@ -1,6 +1,5 @@
 package com.cesoft.feature_login.ui
 
-import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -22,12 +21,12 @@ class LoginFragment : Fragment() {
     private val vm: LoginViewModel by inject()
     private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val data = result.data
-        if(result.resultCode == Activity.RESULT_OK && data != null) {
+        if(data != null) {//result.resultCode == Activity.RESULT_OK
             vm.login(data)
         }
         else {
-            Log.e(tag,"resultLauncher:e: Huawei Sign In failed: ---------------------- ${result.resultCode} : $data")
-            Toast.makeText(context, R.string.login_error_google, Toast.LENGTH_LONG).show()
+            Log.e(TAG, "resultLauncher:e: Huawei Login failed: ---------------------- ${result.resultCode} ")//: ${data!!.extras!!["HUAWEIID_SIGNIN_RESULT"]}")
+            Toast.makeText(context, R.string.login_error_huawei, Toast.LENGTH_LONG).show()
         }
     }
     private lateinit var lblTitulo: TextView
@@ -43,9 +42,14 @@ class LoginFragment : Fragment() {
     private lateinit var btnLoginServiceId: Button
     private lateinit var progressBar: ProgressBar
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if(vm.isLoggedIn()) {
+            requireActivity().finish()
+            return
+        }
+
         vm.goto.observe(this, { goto: LoginViewModel.GOTO ->
             when (goto) {
                 LoginViewModel.GOTO.Finish -> {
@@ -63,10 +67,6 @@ class LoginFragment : Fragment() {
             clearFields()
         })
 
-        if(vm.isLoggedIn()) {
-            requireActivity().finish()
-            return
-        }
     }
 
     override fun onCreateView(
@@ -246,7 +246,7 @@ class LoginFragment : Fragment() {
 
 
     companion object {
-        //private const val tag = "LoginFrg"
+        private const val TAG = "LoginFrg"
         private const val ARG_SECTION_NUMBER = "section_number"
 
         const val MAX_PAGES = 3
