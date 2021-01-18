@@ -43,7 +43,6 @@ class PoiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         vm = ViewModelProvider(this).get(PoiViewModel::class.java)
         vm.poi = arguments?.get(ARG_PARAM) as Poi
         Log.e(TAG, "------------poi=${vm.poi}")

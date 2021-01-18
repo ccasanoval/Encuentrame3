@@ -1,4 +1,4 @@
-package com.cesoft.feature_poi
+package com.cesoft.feature_poi.repo
 
 import android.util.Log
 import com.cesoft.feature_geocommon.Cloud

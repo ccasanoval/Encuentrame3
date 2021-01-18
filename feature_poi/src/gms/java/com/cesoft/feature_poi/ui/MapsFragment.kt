@@ -3,6 +3,7 @@ package com.cesoft.feature_poi.ui
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.cesoft.feature_poi.R
 import com.cesoft.feature_poi.Util
 import com.cesoft.feature_poi.model.Poi
@@ -11,9 +12,10 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MapsFragment : Fragment() {
-    private var poi: Poi? = null
+    private lateinit var vm: MapsViewModel
     private var mapZoom = 20f
 
     override fun onCreateView(
@@ -27,9 +29,19 @@ class MapsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        poi = arguments?.get(ARG_PARAM) as Poi
+        vm = ViewModelProvider(this).get(MapsViewModel::class.java)
+        vm.poi = arguments?.get(ARG_PARAM) as Poi
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync { map -> onMapReady(map) }
+
+        val fabSave = view.findViewById<FloatingActionButton>(R.id.fabSave)
+        fabSave.setOnClickListener {
+
+        }
+        val fabSearch = view.findViewById<FloatingActionButton>(R.id.fabSearch)
+        fabSearch.setOnClickListener {
+
+        }
     }
 
     private fun onMapReady(map: GoogleMap) {
@@ -43,7 +55,7 @@ class MapsFragment : Fragment() {
         map.setOnMapClickListener { latLng: LatLng ->
             //setPosicion(latLng.latitude, latLng.longitude, true)
         }
-        poi?.let { poi ->
+        vm.poi?.let { poi ->
             val pos = LatLng(poi.latitude, poi.longitude)
             val mo = MarkerOptions()
                 .position(pos)
